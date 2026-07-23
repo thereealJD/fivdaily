@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daily Five Words — Dictionary</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://raw.githubusercontent.com/thereealJD/icons/refs/heads/main/abstract-grainy-dotted-overlay-texture-background.png" type="image/icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="https://raw.githubusercontent.com/thereealJD/icons/refs/heads/main/abstract-grainy-dotted-overlay-texture-background.png" type="image/icon" />
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      /* Warm cream base with a subtle dotted notebook pattern */
       background-color: #f4f1eb;
       background-image: radial-gradient(#d6d0c4 1px, transparent 1px);
       background-size: 20px 20px;
@@ -32,7 +28,6 @@
       letter-spacing: -0.01em;
     }
 
-    /* Use serif for academic/dictionary headings */
     .word-title, .practice-word-title, .expanded-word-title, .modal-title, .quiz-word-title {
       font-family: 'Crimson Pro', Georgia, serif;
       color: #2d2824;
@@ -58,6 +53,23 @@
       flex: 1;
       position: relative;
       max-width: 340px;
+    }
+
+    .header-center {
+      flex: 0 0 auto;
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #2d2824;
+      letter-spacing: 0.02em;
+      margin: 0 12px;
+      user-select: none;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .search-input {
@@ -97,16 +109,9 @@
       scrollbar-width: thin;
       scrollbar-color: #d6d0c4 transparent;
     }
-    .search-dropdown::-webkit-scrollbar {
-      width: 4px;
-    }
-    .search-dropdown::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 2px;
-    }
-    .search-dropdown.active {
-      display: block;
-    }
+    .search-dropdown::-webkit-scrollbar { width: 4px; }
+    .search-dropdown::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
+    .search-dropdown.active { display: block; }
 
     .search-result-item {
       display: flex;
@@ -118,12 +123,8 @@
       font-size: 14px;
       border-bottom: 1px solid #f4f1eb;
     }
-    .search-result-item:last-child {
-      border-bottom: none;
-    }
-    .search-result-item:hover {
-      background: #faf8f5;
-    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: #faf8f5; }
 
     .add-to-practice-btn {
       padding: 4px 10px;
@@ -144,12 +145,6 @@
       background: #f4f1eb;
       border-color: #a39c91;
       color: #2d2824;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .btn {
@@ -173,7 +168,6 @@
       background: #faf8f5;
       border-color: #c4bdaf;
     }
-    /* Forest theme primary button */
     .btn-primary {
       background: #3e5141;
       color: #faf8f5;
@@ -188,9 +182,7 @@
       cursor: not-allowed;
     }
 
-    .btn-square {
-      border-radius: 6px;
-    }
+    .btn-square { border-radius: 6px; }
 
     .main {
       flex: 1;
@@ -199,16 +191,9 @@
       scrollbar-width: thin;
       scrollbar-color: #d6d0c4 transparent;
     }
-    .main::-webkit-scrollbar {
-      width: 5px;
-    }
-    .main::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .main::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 3px;
-    }
+    .main::-webkit-scrollbar { width: 5px; }
+    .main::-webkit-scrollbar-track { background: transparent; }
+    .main::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 3px; }
 
     .words-row {
       display: flex;
@@ -248,17 +233,12 @@
       scrollbar-width: thin;
       scrollbar-color: #d6d0c4 transparent;
     }
-    .word-full-definition::-webkit-scrollbar {
-      width: 4px;
-    }
-    .word-full-definition::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 2px;
-    }
+    .word-full-definition::-webkit-scrollbar { width: 4px; }
+    .word-full-definition::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
     .word-full-definition .fl-label, .practice-full-def .fl-label, .expanded-definition .fl-label {
       font-family: 'Crimson Pro', Georgia, serif;
       font-weight: 600;
-      color: #7c624b; /* Warm rust accent */
+      color: #7c624b;
       font-style: italic;
       margin-top: 10px;
       display: block;
@@ -271,9 +251,6 @@
       color: #a39c91;
       font-size: 13px;
       font-family: 'Inter', sans-serif;
-    }
-    .word-full-definition .sense-group, .practice-full-def .sense-group, .expanded-definition .sense-group {
-      margin: 6px 0;
     }
     .word-full-definition .sense-block, .practice-full-def .sense-block, .expanded-definition .sense-block {
       display: block;
@@ -293,7 +270,6 @@
       font-weight: 500;
       color: #5c554d;
     }
-    /* Muted forest green for links */
     .mw-link {
       color: #4a624d;
       text-decoration: none;
@@ -316,9 +292,7 @@
       cursor: pointer;
       font-weight: 500;
     }
-    .view-full-def:hover {
-      color: #2d2824;
-    }
+    .view-full-def:hover { color: #2d2824; }
     .view-full-def .icon {
       width: 14px;
       height: 14px;
@@ -338,9 +312,7 @@
       border-radius: 6px;
       font-family: inherit;
     }
-    .learned-btn:hover {
-      background: #faf8f5;
-    }
+    .learned-btn:hover { background: #faf8f5; }
     .learned-btn.learned {
       background: #f0ebe1;
       border-color: #c4bdaf;
@@ -387,9 +359,110 @@
       color: #a39c91;
     }
 
-    .custom-select-wrapper {
-      position: relative;
+    .vault-toolbar {
+      display: flex;
+      gap: 4px;
+      align-items: center;
     }
+    .vault-toolbar-btn {
+      background: transparent;
+      border: none;
+      padding: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #7a7268;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .vault-toolbar-btn:hover, .vault-toolbar-btn.active {
+      background: #e6e2d8;
+      color: #2d2824;
+    }
+    .vault-toolbar-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2;
+    }
+
+    .vault-node {
+      display: flex;
+      align-items: center;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #2d2824;
+      transition: background 0.15s;
+      position: relative;
+      user-select: none;
+      margin-bottom: 2px;
+    }
+    .vault-node:hover { background: #f0ebe1; }
+    .vault-node.active-word {
+      background: #e9e4d9;
+      font-weight: 500;
+      border-left: 3px solid #3e5141;
+      padding-left: 9px !important;
+    }
+    .vault-actions {
+      display: none;
+      margin-left: auto;
+      align-items: center;
+      gap: 4px;
+    }
+    .vault-node:hover .vault-actions { display: flex; }
+    .vault-icon-btn {
+      background: none;
+      border: none;
+      padding: 2px;
+      color: #7a7268;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vault-icon-btn:hover { background: #dcd7cd; color: #2d2824; }
+    .vault-icon-btn svg { width: 14px; height: 14px; stroke-width: 2; }
+
+    .rename-input {
+      width: 100%;
+      border: 1px solid #3e5141;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+      font-family: inherit;
+    }
+    .vault-toggle {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+      color: #a39c91;
+    }
+    .vault-toggle svg { width: 14px; height: 14px; stroke-width: 2; transition: transform 0.15s; }
+    .vault-toggle.open svg { transform: rotate(90deg); }
+
+    .vault-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .vault-spacer { flex: 1; min-height: 20px; }
+
+    .vault-label.attached { font-weight: 600; color: #3e5141; }
+    .vault-label svg { width: 14px; height: 14px; flex-shrink: 0; color: #7a7268; }
+
+    .custom-select-wrapper { position: relative; }
     .custom-select-trigger {
       border: 1px solid #dcd7cd;
       padding: 8px 28px 8px 12px;
@@ -429,12 +502,10 @@
       z-index: 50;
       display: none;
       box-shadow: 0 8px 24px rgba(45, 40, 36, 0.08);
-      max-height: 200px;
       overflow-y: auto;
     }
-    .custom-select-dropdown.active {
-      display: block;
-    }
+    .custom-select-dropdown.active { display: block; }
+    #vaultSortDropdown { width: 120px; }
     .custom-select-option {
       padding: 10px 12px;
       font-size: 13.5px;
@@ -442,12 +513,8 @@
       transition: background 0.15s;
       border-bottom: 1px solid #f4f1eb;
     }
-    .custom-select-option:last-child {
-      border-bottom: none;
-    }
-    .custom-select-option:hover {
-      background: #faf8f5;
-    }
+    .custom-select-option:last-child { border-bottom: none; }
+    .custom-select-option:hover { background: #faf8f5; }
 
     .words-list {
       flex: 1;
@@ -455,65 +522,16 @@
       scrollbar-width: thin;
       scrollbar-color: #d6d0c4 transparent;
     }
-    .words-list::-webkit-scrollbar {
-      width: 4px;
-    }
-    .words-list::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 2px;
-    }
+    .words-list::-webkit-scrollbar { width: 4px; }
+    .words-list::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
 
-    .word-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 12px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: all 0.15s;
-      border-left: 3px solid transparent;
-      margin-bottom: 2px;
-    }
-    .word-item:hover {
-      background: #f0ebe1;
-    }
-    .word-item.active-word {
-      background: #e9e4d9;
-      border-left-color: #3e5141;
-      font-weight: 500;
-      color: #2d2824;
-    }
-
-    .delete-word-btn {
-      opacity: 0;
-      padding: 4px 8px;
-      font-size: 11px;
-      font-weight: 600;
-      border: none;
-      background: #b85c5c; /* Softer, academic terracotta */
-      color: #fff;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.15s;
-      margin-left: auto;
-      font-family: inherit;
-    }
-    .word-item:hover .delete-word-btn {
-      opacity: 1;
-    }
-    .delete-word-btn:hover {
-      background: #9a4949;
-    }
-
-    /* PRACTICE LAYOUT */
     .practice-area {
       flex: 1;
       display: flex;
       overflow: hidden;
       position: relative;
     }
-    
+
     .practice-columns {
       display: flex;
       width: 100%;
@@ -534,13 +552,8 @@
       scrollbar-width: thin;
       scrollbar-color: #d6d0c4 transparent;
     }
-    .practice-col-left::-webkit-scrollbar {
-      width: 5px;
-    }
-    .practice-col-left::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 3px;
-    }
+    .practice-col-left::-webkit-scrollbar { width: 5px; }
+    .practice-col-left::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 3px; }
 
     .practice-col-right {
       width: 100%;
@@ -551,12 +564,10 @@
       gap: 24px;
       overflow-y: auto;
       padding-right: 4px;
-      scrollbar-width: none; /* Hide scrollbar */
+      scrollbar-width: none;
       -ms-overflow-style: none;
     }
-    .practice-col-right::-webkit-scrollbar {
-      display: none;
-    }
+    .practice-col-right::-webkit-scrollbar { display: none; }
 
     .practice-word-header {
       display: flex;
@@ -584,7 +595,6 @@
       color: #5c554d;
     }
 
-    /* QUIZ MODULE */
     .quiz-module {
       border: 1px solid #e6e2d8;
       background: #ffffff;
@@ -638,12 +648,8 @@
       background: #fdf3f3;
       color: #8c3b3b;
     }
-    .option-btn:disabled {
-      cursor: default;
-    }
-    .option-btn.dimmed {
-      opacity: 0.4;
-    }
+    .option-btn:disabled { cursor: default; }
+    .option-btn.dimmed { opacity: 0.4; }
 
     .quiz-feedback-row {
       display: flex;
@@ -671,9 +677,7 @@
       border-top: 1px dashed #dcd7cd;
       font-size: 12.5px;
     }
-    .quiz-full-def-link.visible {
-      display: block;
-    }
+    .quiz-full-def-link.visible { display: block; }
     .quiz-full-def-link a {
       color: #7a7268;
       text-decoration: none;
@@ -683,129 +687,7 @@
       transition: color 0.15s;
       font-weight: 500;
     }
-    .quiz-full-def-link a:hover {
-      color: #2d2824;
-    }
-
-    /* AI MODULE STYLES - Redesigned to soft Sage / Academic vibe */
-    .ai-module {
-      border: 1px solid #dce3ce;
-      background: #f6f8f2; /* Soft sage/moss tint */
-      border-radius: 10px;
-      padding: 20px 24px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-height: 480px;
-      max-height: 520px;
-      overflow: auto;
-      box-shadow: 0 4px 12px rgba(45, 40, 36, 0.03);
-    }
-    .ai-module::-webkit-scrollbar {
-      display: none;
-    }
-    .ai-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px dashed #dce3ce;
-    }
-    .ai-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: #3e5141; /* Forest green */
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .ai-icon {
-      width: 16px;
-      height: 16px;
-      stroke: #3e5141;
-    }
-    .ai-refresh-btn {
-      background: none;
-      border: none;
-      color: #3e5141;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      border-radius: 6px;
-      transition: all 0.15s;
-    }
-    .ai-refresh-btn:hover {
-      background: #e9efe1;
-    }
-    .ai-refresh-btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-    .ai-refresh-btn svg {
-      width: 15px;
-      height: 15px;
-      stroke-width: 2;
-    }
-    .ai-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #cbd5be transparent;
-      padding-right: 4px;
-    }
-    .ai-content::-webkit-scrollbar { width: 4px; }
-    .ai-content::-webkit-scrollbar-thumb { background: #cbd5be; border-radius: 2px; }
-    
-    .ai-generate-btn {
-      margin: auto;
-      background: #3e5141;
-      color: #fff;
-      border: 1px solid #3e5141;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 13.5px;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.15s, transform 0.1s;
-      font-family: inherit;
-    }
-    .ai-generate-btn:hover {
-      background: #2f3e31;
-      border-color: #2f3e31;
-      transform: translateY(-1px);
-    }
-    .ai-generate-btn:disabled {
-      background: #8b9c8d;
-      border-color: #8b9c8d;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .ai-sentence-item {
-      font-size: 13.5px;
-      color: #43403a;
-      padding: 10px 0;
-      border-bottom: 1px solid #e9efe1;
-      line-height: 1.6;
-    }
-    .ai-sentence-item:last-child {
-      border-bottom: none;
-    }
-    .ai-sentence-item strong {
-      color: #2d2824;
-      font-weight: 600;
-      background: rgba(124, 98, 75, 0.1); /* Soft rust highlight */
-      padding: 0 4px;
-      border-radius: 3px;
-    }
+    .quiz-full-def-link a:hover { color: #2d2824; }
 
     .type-section-wrapper {
       border-top: 1px dashed #dcd7cd;
@@ -817,9 +699,7 @@
       overflow: auto;
     }
     .type-section-wrapper::-webkit-scrollbar,
-    .type-section::-webkit-scrollbar {
-      display: none;
-    }
+    .type-section::-webkit-scrollbar { display: none; }
     .type-section-wrapper,
     .type-section {
       scrollbar-width: none;
@@ -873,13 +753,8 @@
       width: 100%;
       height: fit-content;
     }
-    .sentences-dropdown::-webkit-scrollbar {
-      width: 4px;
-    }
-    .sentences-dropdown::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 2px;
-    }
+    .sentences-dropdown::-webkit-scrollbar { width: 4px; }
+    .sentences-dropdown::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
     .sentence-item {
       padding: 10px 14px;
       font-size: 13.5px;
@@ -890,9 +765,7 @@
       gap: 10px;
       line-height: 1.5;
     }
-    .sentence-item:last-child {
-      border-bottom: none;
-    }
+    .sentence-item:last-child { border-bottom: none; }
     .sentence-number {
       color: #a39c91;
       flex-shrink: 0;
@@ -901,9 +774,7 @@
       padding-top: 2px;
     }
 
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
     .empty-state {
       color: #a39c91;
       font-size: 14px;
@@ -938,27 +809,26 @@
       height: 16px;
     }
 
-    /* --- DICTIONARY --- */
+    /* Dictionary – full‑width sub‑header */
     .dictionary-container {
       display: flex;
       flex-direction: column;
-      padding: 32px 28px;
       height: calc(100vh - 52px);
       overflow: hidden;
-      padding-top:0;
+      padding: 0;
     }
-    
+
     .dictionary-sub-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      padding:18px;
+      padding: 12px 28px;
       gap: 12px;
-      background-color:white;
-      border-radius:6px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e6e2d8;
+      flex-shrink: 0;
     }
-    
+
     .alphabet-row {
       display: flex;
       flex-wrap: wrap;
@@ -998,12 +868,8 @@
       justify-content: center;
       padding: 2px;
     }
-    .dict-clear-btn:hover {
-      color: #2d2824;
-    }
-    .dict-clear-btn.visible {
-      display: flex;
-    }
+    .dict-clear-btn:hover { color: #2d2824; }
+    .dict-clear-btn.visible { display: flex; }
 
     .letter-btn {
       background: #ffffff;
@@ -1026,27 +892,20 @@
       color: #faf8f5;
       border-color: #3e5141;
     }
-    
+
     .dictionary-grid {
       display: grid;
-      grid-template-columns: repeat(5,1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
       flex: 1;
       overflow-y: auto;
-      padding-right: 8px;
-      padding-bottom: 24px;
+      padding: 20px 28px 8px 28px;
       scrollbar-width: thin;
       scrollbar-color: #d6d0c4 transparent;
-      overflow:hidden;
     }
-    .dictionary-grid::-webkit-scrollbar {
-      width: 5px;
-    }
-    .dictionary-grid::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 3px;
-    }
-    
+    .dictionary-grid::-webkit-scrollbar { width: 5px; }
+    .dictionary-grid::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 3px; }
+
     .dict-word-card {
       border: 1px solid #e6e2d8;
       background: #ffffff;
@@ -1065,7 +924,6 @@
       border-color: #c4bdaf;
       box-shadow: 0 4px 12px rgba(45, 40, 36, 0.04);
     }
-    
     .dict-word-text {
       font-size: 14.5px;
       font-weight: 500;
@@ -1075,7 +933,6 @@
       text-overflow: ellipsis;
       margin-right: 12px;
     }
-    
     .mini-add-btn {
       opacity: 0;
       transition: opacity 0.15s;
@@ -1084,26 +941,22 @@
       border-color: #dcd7cd;
       color: #615a52;
     }
-    .dict-word-card:hover .mini-add-btn {
-      opacity: 1;
-    }
+    .dict-word-card:hover .mini-add-btn { opacity: 1; }
     .mini-add-btn:hover {
       background: #3e5141;
       border-color: #3e5141;
       color: #fff;
     }
-    
+
     .pagination-bar {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
-      margin-top: 16px;
+      padding: 12px 28px 20px 28px;
       border-top: 1px solid #e6e2d8;
-      padding-top: 20px;
       flex-shrink: 0;
     }
-    
     .page-info {
       font-size: 13.5px;
       color: #615a52;
@@ -1111,60 +964,18 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Expansion Backdrops */
-    .expand-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(244, 241, 235, 0.5);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-      z-index: 150;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    .expand-overlay.active {
-      display: block;
-      opacity: 1;
-    }
-    
-    .expanded-card-float {
-      position: fixed;
-      z-index: 160;
-      background: #ffffff;
-      border: 1px solid #dcd7cd;
-      border-radius: 12px;
-      box-shadow: 0 24px 48px rgba(45, 40, 36, 0.12);
-      width: 420px;
-      max-width: 90vw;
-      max-height: 460px;
-      display: none;
-      flex-direction: column;
-      padding: 24px;
-      opacity: 0;
-      transform: scale(0.97) translateY(10px);
-      transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .expanded-card-float.visible-float {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-    
-    #practiceHeaderContainer{
+    #practiceHeaderContainer {
       max-height: 500px;
       overflow: auto;
       scrollbar-width: thin;
     }
-    
+
     .expanded-word-title {
       font-size: 26px;
       font-weight: 600;
       margin-bottom: 14px;
     }
-    
+
     .expanded-definition {
       font-size: 14px;
       line-height: 1.65;
@@ -1176,14 +987,9 @@
       scrollbar-width: thin;
       scrollbar-color: #d6d0c4 transparent;
     }
-    .expanded-definition::-webkit-scrollbar {
-      width: 4px;
-    }
-    .expanded-definition::-webkit-scrollbar-thumb {
-      background: #d6d0c4;
-      border-radius: 2px;
-    }
-    
+    .expanded-definition::-webkit-scrollbar { width: 4px; }
+    .expanded-definition::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
+
     .expanded-actions {
       display: flex;
       justify-content: space-between;
@@ -1192,7 +998,7 @@
       padding-top: 16px;
       margin-top: auto;
     }
-    
+
     .close-expanded {
       background: none;
       border: none;
@@ -1203,9 +1009,7 @@
       transition: color 0.15s;
       line-height: 1;
     }
-    .close-expanded:hover {
-      color: #2d2824;
-    }
+    .close-expanded:hover { color: #2d2824; }
 
     .no-def-container {
       display: inline-flex;
@@ -1223,9 +1027,7 @@
       padding: 0;
       font-family: inherit;
     }
-    .create-own-def-btn:hover {
-      color: #2f3e31;
-    }
+    .create-own-def-btn:hover { color: #2f3e31; }
 
     #floatAddWordBtn {
       background-color: #3e5141;
@@ -1239,11 +1041,8 @@
       transition: background 0.15s;
       font-family: inherit;
     }
-    #floatAddWordBtn:hover {
-      background: #2f3e31;
-    }
+    #floatAddWordBtn:hover { background: #2f3e31; }
 
-    /* --- FREE-WRITE STRUCTURAL EDITOR MODAL --- */
     .modal-backdrop {
       position: fixed;
       top: 0;
@@ -1257,9 +1056,7 @@
       align-items: center;
       justify-content: center;
     }
-    .modal-backdrop.active {
-      display: flex;
-    }
+    .modal-backdrop.active { display: flex; }
     .modal-window {
       background: #ffffff;
       border: 1px solid #dcd7cd;
@@ -1352,8 +1149,7 @@
       display: flex;
       gap: 12px;
     }
-    
-    /* NEW: Groups Styling */
+
     .group-tag {
       background: #e9efe1;
       color: #3e5141;
@@ -1369,45 +1165,114 @@
       height: 16px;
       cursor: pointer;
     }
+
+    /* Flat group list */
+    .flat-word-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+    }
+    .flat-word-item:hover { background: #f0ebe1; }
+    .flat-word-item.active-word {
+      background: #e9e4d9;
+      border-left-color: #3e5141;
+      font-weight: 500;
+    }
+    .flat-word-item .delete-word-btn {
+      opacity: 0;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      background: #b85c5c;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.15s;
+      margin-left: auto;
+      font-family: inherit;
+    }
+    .flat-word-item:hover .delete-word-btn { opacity: 1; }
+    .flat-word-item .delete-word-btn:hover { background: #9a4949; }
+
+    /* Folder search close on click away */
+    .folder-search-node {
+      position: relative;
+    }
   </style>
 </head>
 <body>
   <div class="header">
     <div class="header-left">
-      <input type="text" class="search-input" id="searchWordInput" placeholder="Search word…" autocomplete="off">
+      <input type="text" class="search-input" id="searchWordInput" placeholder="Search word…" autocomplete="off" />
       <div class="search-dropdown" id="searchDropdown"></div>
     </div>
+
+    <!-- Brand logo in center -->
+    <div class="header-center">FivDaily</div>
+
     <div class="header-right">
-      <button class="btn" id="dailyTabBtn"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Daily Five</button>
-      <button class="btn btn-square" id="dictionaryTabBtn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="miter"><path d="M4 19.5L6.5 17H20"/><path d="M6.5 2H20v20H6.5L4 19.5V4.5L6.5 2z"/><line x1="10" y1="8" x2="16" y2="8"/><line x1="10" y1="12" x2="16" y2="12"/><line x1="10" y1="16" x2="12" y2="16"/></svg>Dictionary</button>
-      <button class="btn btn-primary" id="practiceTabBtn"><svg class="icon bullseye-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Practice</button>
+      <button class="btn" id="dailyTabBtn">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Daily Five
+      </button>
+      <button class="btn btn-square" id="dictionaryTabBtn">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="miter"><path d="M4 19.5L6.5 17H20"/><path d="M6.5 2H20v20H6.5L4 19.5V4.5L6.5 2z"/><line x1="10" y1="8" x2="16" y2="8"/><line x1="10" y1="12" x2="16" y2="12"/><line x1="10" y1="16" x2="12" y2="16"/></svg>Dictionary
+      </button>
+      <button class="btn btn-primary" id="practiceTabBtn">
+        <svg class="icon bullseye-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Practice
+      </button>
     </div>
   </div>
 
   <div class="main" id="dailyFiveView">
     <div class="words-row" id="wordCardsContainer"><div class="empty-state">Loading words…</div></div>
-    <div class="refresh-section"><button class="btn" id="refreshWordsBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Refresh words</button></div>
+    <div class="refresh-section">
+      <button class="btn" id="refreshWordsBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Refresh words
+      </button>
+    </div>
   </div>
 
   <div class="practice-layout hidden" id="practiceView">
     <div class="sidebar">
-      <input type="text" class="sidebar-search" id="practiceSearchInput" placeholder="Filter words…">
-      <div class="custom-select-wrapper" id="customSortWrapper">
-        <div class="custom-select-trigger" id="customSortTrigger" data-value="newest">Newest first</div>
-        <div class="custom-select-dropdown" id="customSortDropdown">
-          <div class="custom-select-option" data-value="newest">Newest first</div>
-          <div class="custom-select-option" data-value="oldest">Oldest first</div>
-          <div class="custom-select-option" data-value="az">A → Z</div>
-        </div>
-      </div>
-      <div class="custom-select-wrapper" id="customFilterWrapper" style="margin-top:-8px;">
-        <div class="custom-select-trigger" id="customFilterTrigger" data-value="all">All Groups</div>
-        <div class="custom-select-dropdown" id="customFilterDropdown">
+      <input type="text" class="sidebar-search" id="practiceSearchInput" placeholder="Filter words…" />
+
+      <div class="vault-toolbar">
+        <button class="vault-toolbar-btn" id="createFolderBtn" title="Create New Folder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><line x1="12" y1="10" x2="12" y2="16"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
+        </button>
+        <div class="custom-select-wrapper" id="vaultSortWrapper" style="display:inline-block;">
+          <button class="vault-toolbar-btn" id="vaultSortBtn" title="Change Sort Order" data-value="newest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+          </button>
+          <div class="custom-select-dropdown" id="vaultSortDropdown">
+            <div class="custom-select-option" data-value="newest">Newest first</div>
+            <div class="custom-select-option" data-value="oldest">Oldest first</div>
+            <div class="custom-select-option" data-value="az">A → Z</div>
           </div>
+        </div>
+        <button class="vault-toolbar-btn" id="expandAllBtn" title="Expand All">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h8"/><path d="M3 12h8"/><path d="M3 19h8"/><path d="m15 8 3-3 3 3"/><path d="m15 16 3 3 3-3"/></svg>
+        </button>
+        <button class="vault-toolbar-btn" id="collapseAllBtn" title="Collapse All">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h8"/><path d="M3 12h8"/><path d="M3 19h8"/><path d="m15 5 3 3 3-3"/><path d="m15 19 3-3 3 3"/></svg>
+        </button>
       </div>
-      <div class="words-list" id="learnedWordsList"><div class="empty-state">No words yet</div></div>
+
+      <div class="custom-select-wrapper" id="customFilterWrapper" style="margin-top:-8px;">
+        <div class="custom-select-trigger" id="customFilterTrigger" data-value="unassigned">Unassigned</div>
+        <div class="custom-select-dropdown" id="customFilterDropdown"></div>
+      </div>
+
+      <div class="words-list" id="learnedWordsList"><div class="empty-state">No items yet</div></div>
     </div>
-    
+
     <div class="practice-area" id="practiceContent">
       <div class="practice-columns">
         <div class="practice-col-left">
@@ -1416,20 +1281,19 @@
         </div>
         <div class="practice-col-right">
           <div id="quizContainer"></div>
-          <div id="aiSentencesContainer"></div>
+          <!-- AI module removed -->
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="dictionary-container hidden" id="dictionaryView">
     <div class="dictionary-sub-header">
       <div class="alphabet-row" id="alphabetRow"></div>
       <div class="dict-filter-wrapper">
-        <input type="text" class="dict-filter-input" id="dictFilterInput" placeholder="Narrow down items…">
+        <input type="text" class="dict-filter-input" id="dictFilterInput" placeholder="Narrow down items…" />
         <button class="dict-clear-btn" id="dictClearBtn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
     </div>
@@ -1437,17 +1301,91 @@
     <div class="pagination-bar" id="dictionaryPagination"></div>
   </div>
 
-  <div class="expand-overlay" id="expandOverlay"></div>
-  <div class="expanded-card-float" id="expandedFloatCard"></div>
+  <!-- Dictionary expansion modal -->
+  <div class="modal-backdrop" id="expandOverlay">
+    <div class="modal-window" id="expandedFloatCard" style="max-height: 80vh; max-width: 600px;">
+      <!-- content populated dynamically -->
+    </div>
+  </div>
 
+  <!-- Vault Context Menu -->
+  <div id="vaultContextMenu" class="custom-select-dropdown" style="display:none; position:fixed; z-index:9999; width:180px;">
+    <div class="custom-select-option" id="ctxMakeFolderWord" style="display:none;">Make folder Word</div>
+    <div class="custom-select-option" id="ctxMakeWord" style="display:none;">Attach Word to folder</div>
+    <div class="custom-select-option" id="ctxMove">Move to…</div>
+    <div class="custom-select-option" id="ctxRename">Rename</div>
+    <div class="custom-select-option" id="ctxCopy">Copy</div>
+    <div class="custom-select-option" style="color:#b85c5c;" id="ctxDelete">Delete</div>
+  </div>
+
+  <!-- Move To Modal -->
+  <div class="modal-backdrop" id="moveModal">
+    <div class="modal-window" style="width: 400px; min-height: 200px;">
+      <div class="modal-title">Move to…</div>
+      <div class="modal-body" style="min-height: auto;">
+        <select id="moveSelect" class="search-input" style="width: 100%; padding: 10px;"></select>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-footer-right" style="width:100%; justify-content: flex-end;">
+          <button class="btn" id="cancelMoveBtn">Cancel</button>
+          <button class="btn btn-primary" id="confirmMoveBtn">Move</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div class="modal-backdrop" id="confirmModal">
+    <div class="modal-window" style="width: 400px; min-height: 150px;">
+      <div class="modal-title" id="confirmTitle">Confirm</div>
+      <div class="modal-body" id="confirmBody" style="min-height: auto; font-size: 14px;"></div>
+      <div class="modal-footer">
+        <div class="modal-footer-right" style="width:100%; justify-content: flex-end;">
+          <button class="btn" id="confirmCancelBtn">Cancel</button>
+          <button class="btn btn-primary" id="confirmOkBtn" style="background:#b85c5c; border-color:#b85c5c;">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prompt Modal -->
+  <div class="modal-backdrop" id="promptModal">
+    <div class="modal-window" style="width: 400px; min-height: 150px;">
+      <div class="modal-title" id="promptTitle">Enter value</div>
+      <div class="modal-body" style="min-height: auto;">
+        <input type="text" id="promptInput" class="search-input" style="width: 100%;" autocomplete="off" />
+      </div>
+      <div class="modal-footer">
+        <div class="modal-footer-right" style="width:100%; justify-content: flex-end;">
+          <button class="btn" id="promptCancelBtn">Cancel</button>
+          <button class="btn btn-primary" id="promptOkBtn">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Modal -->
+  <div class="modal-backdrop" id="alertModal">
+    <div class="modal-window" style="width: 400px; min-height: 150px;">
+      <div class="modal-title">Alert</div>
+      <div class="modal-body" id="alertBody" style="min-height: auto; font-size: 14px;"></div>
+      <div class="modal-footer">
+        <div class="modal-footer-right" style="width:100%; justify-content: flex-end;">
+          <button class="btn btn-primary" id="alertOkBtn">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Definition Modal -->
   <div class="modal-backdrop" id="customDefModal">
     <div class="modal-window">
       <div class="modal-title" id="modalWordTitle">Create Custom Definition</div>
       <div class="modal-body">
         <div class="syntax-guide-box">
-          <code>@pos noun</code> & <code>@pron \ prō- \</code> configure meta info headers at top.<br>
-          <code>1 -- definition</code> generates primary root node <strong>1 : definition</strong>.<br>
-          <code>1 - definition</code> initializes compressed layout <strong>1 a : definition</strong>.<br>
+          <code>@pos noun</code> & <code>@pron \ prō- \</code> configure meta info headers at top.<br />
+          <code>1 -- definition</code> generates primary root node <strong>1 : definition</strong>.<br />
+          <code>1 - definition</code> initializes compressed layout <strong>1 a : definition</strong>.<br />
           <code>- text</code> yields child branch <strong>b : text</strong>. <code>-- text</code> yields sub-tier <strong>(1) : text</strong>.
         </div>
         <div class="modal-field">
@@ -1464,16 +1402,17 @@
     </div>
   </div>
 
+  <!-- Group Modal -->
   <div class="modal-backdrop" id="groupModal">
     <div class="modal-window" style="width: 400px; min-height: 300px;">
       <div class="modal-title">Manage Groups</div>
       <div class="modal-subtitle" id="groupModalWordName"></div>
       <div class="modal-body" style="min-height: auto;">
-         <div style="display:flex; gap:8px; margin-bottom: 16px;">
-           <input type="text" id="newGroupInput" class="search-input" placeholder="New group name..." style="flex:1;">
-           <button class="btn btn-primary" id="createNewGroupBtn">Create</button>
-         </div>
-         <div id="groupModalList" style="display:flex; flex-direction:column; gap:8px;"></div>
+        <div style="display:flex; gap:8px; margin-bottom: 16px;">
+          <input type="text" id="newGroupInput" class="search-input" placeholder="New group name…" style="flex:1;" />
+          <button class="btn btn-primary" id="createNewGroupBtn">Create</button>
+        </div>
+        <div id="groupModalList" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
       <div class="modal-footer">
         <div class="modal-footer-right" style="width:100%; justify-content: flex-end;">
@@ -1483,27 +1422,37 @@
     </div>
   </div>
 
- <script>
-    (function(){
-      const API_KEY = 'e930d58a-b606-43ef-9491-fef956d48d1a';
+  <script>
+    (function() {
       const BASE_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json';
       const OXFORD_5000_URL = 'The Oxford 5000.txt';
       const ENGLISH_WORDS_URL = 'words.txt';
       const MW_WEB_URL = 'https://www.merriam-webster.com/dictionary/';
-  
+      const API_KEY = 'e930d58a-b606-43ef-9491-fef956d48d1a';
+
       let currentTab = 'daily';
       let dailyWords = [];
       let learnedWords = {};
-      let userGroups = []; // NEW: Array of global group names
+      let vaultTree = [];
+      let editingNodeId = null;
+      let contextMenuNodeId = null;
+      let contextMenuNodeType = null;
+      let activeFolderSearchId = null;
+
+      let userGroups = [];
       let selectedPracticeWord = null;
       let combinedWordList = null;
       let searchTimeout = null;
-      let quizWord = null, quizOptions = [], quizCorrectIndex = null, quizAnswered = false, quizStreak = 0;
+      let quizWord = null,
+        quizOptions = [],
+        quizCorrectIndex = null,
+        quizAnswered = false,
+        quizStreak = 0;
 
       let dictionaryMasterList = [];
       let currentLetter = null;
       let dictPage = 1;
-      const PAGE_SIZE = 50; 
+      const PAGE_SIZE = 50;
       let definitionCache = new Map();
       let customDefinitions = {};
       let currentEditingWord = null;
@@ -1519,7 +1468,6 @@
       const practiceHeaderContainer = document.getElementById('practiceHeaderContainer');
       const quizContainer = document.getElementById('quizContainer');
       const typeContainer = document.getElementById('typeContainer');
-      const aiSentencesContainer = document.getElementById('aiSentencesContainer');
       const searchWordInput = document.getElementById('searchWordInput');
       const searchDropdown = document.getElementById('searchDropdown');
       const practiceSearchInput = document.getElementById('practiceSearchInput');
@@ -1539,423 +1487,1219 @@
       const cancelCustomDefBtn = document.getElementById('cancelCustomDefBtn');
       const saveCustomDefBtn = document.getElementById('saveCustomDefBtn');
 
-      function cleanDefinitionText(raw){ if(!raw) return ''; let cleaned = raw.replace(/\s+/g, ' ').trim(); cleaned = cleaned.replace(/^[\s\-]+|[\s\-]+$/g, ''); return cleaned; }
-      function cleanMWText(text){ if(!text) return ''; return text.replace(/\{bc\}/g, ': ').replace(/\{mw_t_sx\|([^|}]+)\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$2</a>`).replace(/\{mw_t_sx\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`).replace(/\{sx\|([^|}]+)\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$2</a>`).replace(/\{sx\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`).replace(/\{d_link\|([^|}]+)\|([^|}]+)\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$2</a>`).replace(/\{d_link\|([^|}]+)\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`).replace(/\{a_link\|([^|}]+)\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`).replace(/\{xt\|([^|}]+)\}/g, '$1').replace(/\{wi\}/g, '<strong>').replace(/\{\/wi\}/g, '</strong>').replace(/\{it\}/g, '<em>').replace(/\{\/it\}/g, '</em>').replace(/\{phrase\|([^|}]+)\}/g, '<strong><em>$1</em></strong>').replace(/\{dx\}/g, '<em>see also</em> ').replace(/\{\/dx\}/g, '').replace(/\{[^}]+\}/g, '').replace(/\s+/g, ' ').trim(); }
-      function parseSenseItem(item){ let senses=[]; if(!Array.isArray(item)||!item[1]) return senses; const type=item[0]; const senseObj=item[1]; if(type==='sense'||type==='pseq'||type==='bs'){ if(type==='pseq'&&Array.isArray(senseObj)){ for(const subSubItem of senseObj) senses.push(...parseSenseItem(subSubItem)); return senses; } if(type==='bs'&&senseObj.sense){ senses.push(...parseSenseItem(['sense',senseObj.sense])); return senses; } const sn=senseObj.sn?(typeof senseObj.sn==='string'?senseObj.sn:senseObj.sn.join('')):''; let mainText=''; if(senseObj.dt&&Array.isArray(senseObj.dt)){ const pieces=senseObj.dt.filter(t=>Array.isArray(t)&&(t[0]==='text'||t[0]==='uns')).map(t=>{ if(t[0]==='text') return cleanMWText(t[1]).trim(); if(t[0]==='uns'&&Array.isArray(t[1])) return t[1].filter(ut=>Array.isArray(ut)&&ut[0]==='text').map(ut=>cleanMWText(ut[1]).trim()).join(' '); return ''; }).filter(t=>t.length>0); if(pieces.length>0) mainText=cleanDefinitionText(pieces.join(' ')); } senses.push({type:'main',number:sn,text:mainText,raw:senseObj}); if(senseObj.sdsense&&typeof senseObj.sdsense==='object'){ const subSn=senseObj.sdsense.sd||''; let subText=''; if(senseObj.sdsense.dt&&Array.isArray(senseObj.sdsense.dt)){ const subPieces=senseObj.sdsense.dt.filter(t=>Array.isArray(t)&&t[0]==='text').map(t=>cleanMWText(t[1]).trim()).filter(t=>t.length>0); if(subPieces.length>0) subText=cleanDefinitionText(subPieces.join(' ')); } senses.push({type:'sub',number:subSn,text:subText,parentNumber:sn}); } } return senses; }
-      function extractAllSenses(entry){ let senses=[]; if(!entry.def||!Array.isArray(entry.def)) return senses; for(const defGroup of entry.def){ if(!defGroup.sseq) continue; for(const seq of defGroup.sseq){ if(!Array.isArray(seq)) continue; for(const item of seq){ if(Array.isArray(item)){ if(item[0]==='sense'||item[0]==='pseq'||item[0]==='bs') senses.push(...parseSenseItem(item)); else{ for(const subItem of item){ if(Array.isArray(subItem)) senses.push(...parseSenseItem(subItem)); } } } } } } return senses; }
-      function buildDefinitionHTML(data){ if(!Array.isArray(data)||data.length===0) return null; let html=''; for(const entry of data){ if(typeof entry!=='object') continue; const fl=entry.fl||''; const prs=entry.prs&&entry.prs[0]?entry.prs[0].mw||'':''; if(fl||prs){ html+=`<span class="fl-label">${fl}</span>`; if(prs) html+=` <span class="pron">/${prs}/</span>`; } const senses=extractAllSenses(entry); for(let i=0;i<senses.length;i++){ const s=senses[i]; let className='sense-block'; if(s.type==='sub') className='sub-sense'; else if(s.number){ const trimmed=s.number.trim(); if(trimmed.startsWith('(')||/^[a-z]/.test(trimmed)) className='sub-sense'; } if(s.text){ html+=`<div class="${className}"><span class="sense-num">${s.number?s.number+' ':''}</span>${s.text}</div>`; } else if(s.number){ html+=`<div class="${className}"><span class="sense-num">${s.number}</span></div>`; } } } return html||null; }
-      function getFirstShortDef(data){ if(!Array.isArray(data)||data.length===0) return null; if(data[0]&&data[0].shortdef&&data[0].shortdef.length) return cleanDefinitionText(data[0].shortdef[0]); return null; }
-      async function fetchFullDefinitionData(word){ try{ const resp=await fetch(`${BASE_URL}/${encodeURIComponent(word)}?key=${API_KEY}`); if(!resp.ok) return null; const data=await resp.json(); if(!Array.isArray(data)||data.length===0||typeof data[0]==='string') return null; return data; } catch(e){ return null; } }
-      
-      async function fetchCombinedWordList(){ if(combinedWordList) return combinedWordList; const [oxfordResp, englishResp]=await Promise.all([fetch(OXFORD_5000_URL), fetch(ENGLISH_WORDS_URL)]); const oxfordText=await oxfordResp.text(); const englishText=await englishResp.text(); const oxfordWords=oxfordText.split('\n').map(l=>l.trim().toLowerCase()).filter(w=>w.length>0); const englishWords=englishText.split('\n').map(l=>l.trim().toLowerCase()).filter(w=>w.length>0&&/^[a-z]+$/.test(w)); combinedWordList=Array.from(new Set([...oxfordWords,...englishWords])).sort(); return combinedWordList; }
-      async function fetchFiveUniqueWords(){ const oxfordList=(await (await fetch(OXFORD_5000_URL)).text()).split('\n').map(l=>l.trim().toLowerCase()).filter(w=>w.length>0); const usedHistory=JSON.parse(localStorage.getItem('vocab_used_history')||'[]'); const available=oxfordList.filter(w=>!usedHistory.includes(w)&&w.length>=3); const shuffled=available.sort(()=>Math.random()-0.5); const selected=shuffled.slice(0,5); const results=[]; for(const word of selected){ const data=await fetchFullDefinitionData(word); const formatted=data?buildDefinitionHTML(data):null; const shortDef=data?getFirstShortDef(data):null; results.push({word,definitionHTML:formatted,shortDef:shortDef||'Definition not available.',learned:false}); } const updatedHistory=[...usedHistory,...selected].slice(-200); localStorage.setItem('vocab_used_history',JSON.stringify(updatedHistory)); return results; }
-      
-      function renderDailyWords(){ if(!dailyWords.length){ wordCardsContainer.innerHTML='<div class="empty-state">No words loaded. Click refresh.</div>'; return; } wordCardsContainer.innerHTML = dailyWords.map(dw=>{ const isLearned=learnedWords[dw.word.toLowerCase()]; return `<div class="word-card"><div class="word-title">${dw.word}</div><div class="word-full-definition">${dw.definitionHTML || dw.shortDef || 'Definition not available.'}</div><a class="view-full-def" href="${MW_WEB_URL}${encodeURIComponent(dw.word)}" target="_blank" rel="noopener">View on Merriam-Webster<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><button class="learned-btn ${isLearned?'learned':''}" data-word="${dw.word}">${isLearned?'Learned':'Mark learned'}</button></div>`; }).join(''); document.querySelectorAll('.learned-btn').forEach(btn=>btn.addEventListener('click',toggleLearned)); }
-      async function refreshDailyWords(){ wordCardsContainer.innerHTML='<div class="empty-state">Loading fresh words…</div>'; dailyWords = await fetchFiveUniqueWords(); saveDailyWords(); renderDailyWords(); }
-      function saveDailyWords(){ localStorage.setItem('vocab_daily_words',JSON.stringify(dailyWords)); localStorage.setItem('vocab_daily_date',new Date().toDateString()); }
-      function loadDailyWords(){ const stored=localStorage.getItem('vocab_daily_words'); const dateStr=localStorage.getItem('vocab_daily_date'); const today=new Date().toDateString(); if(stored && dateStr===today){ try{ dailyWords=JSON.parse(stored); return true; }catch(e){} } return false; }
-      function loadLearnedWords(){ const stored=localStorage.getItem('vocab_learned_words'); if(stored) try{ learnedWords=JSON.parse(stored); }catch(e){ learnedWords={}; } }
-      function saveLearnedWords(){ localStorage.setItem('vocab_learned_words',JSON.stringify(learnedWords)); }
-      
-      function loadCustomDefinitions(){ const stored=localStorage.getItem('vocab_custom_defs'); if(stored) try{ customDefinitions=JSON.parse(stored); }catch(e){ customDefinitions={}; } }
-      function saveCustomDefinitions(){ localStorage.setItem('vocab_custom_defs',JSON.stringify(customDefinitions)); }
+      const vaultContextMenu = document.getElementById('vaultContextMenu');
+
+      function genId() { return 'id_' + Math.random().toString(36).substr(2, 9); }
+
+      // --- Custom Modals ---
+      function customAlert(message) {
+        document.getElementById('alertBody').textContent = message;
+        document.getElementById('alertModal').classList.add('active');
+        return new Promise(resolve => {
+          document.getElementById('alertOkBtn').onclick = () => {
+            document.getElementById('alertModal').classList.remove('active');
+            resolve();
+          };
+        });
+      }
+
+      function customConfirm(title, message) {
+        document.getElementById('confirmTitle').textContent = title;
+        document.getElementById('confirmBody').textContent = message;
+        document.getElementById('confirmModal').classList.add('active');
+        return new Promise(resolve => {
+          document.getElementById('confirmOkBtn').onclick = () => {
+            document.getElementById('confirmModal').classList.remove('active');
+            resolve(true);
+          };
+          document.getElementById('confirmCancelBtn').onclick = () => {
+            document.getElementById('confirmModal').classList.remove('active');
+            resolve(false);
+          };
+        });
+      }
+
+      function customPrompt(title, defaultValue = '') {
+        document.getElementById('promptTitle').textContent = title;
+        const inp = document.getElementById('promptInput');
+        inp.value = defaultValue;
+        document.getElementById('promptModal').classList.add('active');
+        setTimeout(() => { inp.focus(); }, 100);
+        return new Promise(resolve => {
+          document.getElementById('promptOkBtn').onclick = () => {
+            document.getElementById('promptModal').classList.remove('active');
+            resolve(inp.value);
+          };
+          document.getElementById('promptCancelBtn').onclick = () => {
+            document.getElementById('promptModal').classList.remove('active');
+            resolve(null);
+          };
+          inp.onkeydown = (e) => {
+            if (e.key === 'Enter') document.getElementById('promptOkBtn').click();
+          };
+        });
+      }
+
+      // --- Utility functions ---
+      function cleanDefinitionText(raw) { if (!raw) return ''; let cleaned = raw.replace(/\s+/g, ' ').trim(); cleaned = cleaned.replace(/^[\s\-]+|[\s\-]+$/g, ''); return cleaned; }
+
+      function cleanMWText(text) {
+        if (!text) return '';
+        return text.replace(/\{bc\}/g, ': ')
+          .replace(/\{mw_t_sx\|([^|}]+)\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$2</a>`)
+          .replace(/\{mw_t_sx\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`)
+          .replace(/\{sx\|([^|}]+)\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$2</a>`)
+          .replace(/\{sx\|([^|}]+)\|*[^}]*\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`)
+          .replace(/\{d_link\|([^|}]+)\|([^|}]+)\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$2</a>`)
+          .replace(/\{d_link\|([^|}]+)\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`)
+          .replace(/\{a_link\|([^|}]+)\}/g, `<a href="${MW_WEB_URL}$1" target="_blank" rel="noopener" class="mw-link">$1</a>`)
+          .replace(/\{xt\|([^|}]+)\}/g, '$1')
+          .replace(/\{wi\}/g, '<strong>')
+          .replace(/\{\/wi\}/g, '</strong>')
+          .replace(/\{it\}/g, '<em>')
+          .replace(/\{\/it\}/g, '</em>')
+          .replace(/\{phrase\|([^|}]+)\}/g, '<strong><em>$1</em></strong>')
+          .replace(/\{dx\}/g, '<em>see also</em> ')
+          .replace(/\{\/dx\}/g, '')
+          .replace(/\{[^}]+\}/g, '')
+          .replace(/\s+/g, ' ').trim();
+      }
+
+      function parseSenseItem(item) {
+        let senses = [];
+        if (!Array.isArray(item) || !item[1]) return senses;
+        const type = item[0];
+        const senseObj = item[1];
+        if (type === 'sense' || type === 'pseq' || type === 'bs') {
+          if (type === 'pseq' && Array.isArray(senseObj)) {
+            for (const subSubItem of senseObj) senses.push(...parseSenseItem(subSubItem));
+            return senses;
+          }
+          if (type === 'bs' && senseObj.sense) {
+            senses.push(...parseSenseItem(['sense', senseObj.sense]));
+            return senses;
+          }
+          const sn = senseObj.sn ? (typeof senseObj.sn === 'string' ? senseObj.sn : senseObj.sn.join('')) : '';
+          let mainText = '';
+          if (senseObj.dt && Array.isArray(senseObj.dt)) {
+            const pieces = senseObj.dt.filter(t => Array.isArray(t) && (t[0] === 'text' || t[0] === 'uns'))
+              .map(t => {
+                if (t[0] === 'text') return cleanMWText(t[1]).trim();
+                if (t[0] === 'uns' && Array.isArray(t[1]))
+                  return t[1].filter(ut => Array.isArray(ut) && ut[0] === 'text')
+                  .map(ut => cleanMWText(ut[1]).trim()).join(' ');
+                return '';
+              }).filter(t => t.length > 0);
+            if (pieces.length > 0) mainText = cleanDefinitionText(pieces.join(' '));
+          }
+          senses.push({ type: 'main', number: sn, text: mainText, raw: senseObj });
+          if (senseObj.sdsense && typeof senseObj.sdsense === 'object') {
+            const subSn = senseObj.sdsense.sd || '';
+            let subText = '';
+            if (senseObj.sdsense.dt && Array.isArray(senseObj.sdsense.dt)) {
+              const subPieces = senseObj.sdsense.dt.filter(t => Array.isArray(t) && t[0] === 'text')
+                .map(t => cleanMWText(t[1]).trim()).filter(t => t.length > 0);
+              if (subPieces.length > 0) subText = cleanDefinitionText(subPieces.join(' '));
+            }
+            senses.push({ type: 'sub', number: subSn, text: subText, parentNumber: sn });
+          }
+        }
+        return senses;
+      }
+
+      function extractAllSenses(entry) {
+        let senses = [];
+        if (!entry.def || !Array.isArray(entry.def)) return senses;
+        for (const defGroup of entry.def) {
+          if (!defGroup.sseq) continue;
+          for (const seq of defGroup.sseq) {
+            if (!Array.isArray(seq)) continue;
+            for (const item of seq) {
+              if (Array.isArray(item)) {
+                if (item[0] === 'sense' || item[0] === 'pseq' || item[0] === 'bs')
+                  senses.push(...parseSenseItem(item));
+                else {
+                  for (const subItem of item) {
+                    if (Array.isArray(subItem)) senses.push(...parseSenseItem(subItem));
+                  }
+                }
+              }
+            }
+          }
+        }
+        return senses;
+      }
+
+      function buildDefinitionHTML(data) {
+        if (!Array.isArray(data) || data.length === 0) return null;
+        let html = '';
+        for (const entry of data) {
+          if (typeof entry !== 'object') continue;
+          const fl = entry.fl || '';
+          const prs = entry.prs && entry.prs[0] ? entry.prs[0].mw || '' : '';
+          if (fl || prs) {
+            html += `<span class="fl-label">${fl}</span>`;
+            if (prs) html += ` <span class="pron">/${prs}/</span>`;
+          }
+          const senses = extractAllSenses(entry);
+          for (let i = 0; i < senses.length; i++) {
+            const s = senses[i];
+            let className = 'sense-block';
+            if (s.type === 'sub') className = 'sub-sense';
+            else if (s.number) {
+              const trimmed = s.number.trim();
+              if (trimmed.startsWith('(') || /^[a-z]/.test(trimmed)) className = 'sub-sense';
+            }
+            if (s.text) {
+              html += `<div class="${className}"><span class="sense-num">${s.number ? s.number + ' ' : ''}</span>${s.text}</div>`;
+            } else if (s.number) {
+              html += `<div class="${className}"><span class="sense-num">${s.number}</span></div>`;
+            }
+          }
+        }
+        return html || null;
+      }
+
+      function getFirstShortDef(data) {
+        if (!Array.isArray(data) || data.length === 0) return null;
+        if (data[0] && data[0].shortdef && data[0].shortdef.length)
+          return cleanDefinitionText(data[0].shortdef[0]);
+        return null;
+      }
+
+      async function fetchFullDefinitionData(word) {
+        try {
+          const resp = await fetch(`${BASE_URL}/${encodeURIComponent(word)}?key=${API_KEY}`);
+          if (!resp.ok) return null;
+          const data = await resp.json();
+          if (!Array.isArray(data) || data.length === 0 || typeof data[0] === 'string') return null;
+          return data;
+        } catch (e) { return null; }
+      }
+
+      async function fetchCombinedWordList() {
+        if (combinedWordList) return combinedWordList;
+        const [oxfordResp, englishResp] = await Promise.all([fetch(OXFORD_5000_URL), fetch(ENGLISH_WORDS_URL)]);
+        const oxfordText = await oxfordResp.text();
+        const englishText = await englishResp.text();
+        const oxfordWords = oxfordText.split('\n').map(l => l.trim().toLowerCase()).filter(w => w.length > 0);
+        const englishWords = englishText.split('\n').map(l => l.trim().toLowerCase()).filter(w => w.length > 0 && /^[a-z]+$/.test(w));
+        combinedWordList = Array.from(new Set([...oxfordWords, ...englishWords])).sort();
+        return combinedWordList;
+      }
+
+      async function fetchFiveUniqueWords() {
+        const oxfordList = (await (await fetch(OXFORD_5000_URL)).text()).split('\n').map(l => l.trim().toLowerCase()).filter(w => w.length > 0);
+        const usedHistory = JSON.parse(localStorage.getItem('vocab_used_history') || '[]');
+        const available = oxfordList.filter(w => !usedHistory.includes(w) && w.length >= 3);
+        const shuffled = available.sort(() => Math.random() - 0.5);
+        const selected = shuffled.slice(0, 5);
+        const results = [];
+        for (const word of selected) {
+          const data = await fetchFullDefinitionData(word);
+          const formatted = data ? buildDefinitionHTML(data) : null;
+          const shortDef = data ? getFirstShortDef(data) : null;
+          results.push({ word, definitionHTML: formatted, shortDef: shortDef || 'Definition not available.', learned: false });
+        }
+        const updatedHistory = [...usedHistory, ...selected].slice(-200);
+        localStorage.setItem('vocab_used_history', JSON.stringify(updatedHistory));
+        return results;
+      }
+
+      function renderDailyWords() {
+        if (!dailyWords.length) {
+          wordCardsContainer.innerHTML = '<div class="empty-state">No words loaded. Click refresh.</div>';
+          return;
+        }
+        wordCardsContainer.innerHTML = dailyWords.map(dw => {
+          const isLearned = learnedWords[dw.word.toLowerCase()];
+          return `<div class="word-card"><div class="word-title">${dw.word}</div><div class="word-full-definition">${dw.definitionHTML || dw.shortDef || 'Definition not available.'}</div><a class="view-full-def" href="${MW_WEB_URL}${encodeURIComponent(dw.word)}" target="_blank" rel="noopener">View on Merriam-Webster<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><button class="learned-btn ${isLearned?'learned':''}" data-word="${dw.word}">${isLearned?'Learned':'Mark learned'}</button></div>`;
+        }).join('');
+        document.querySelectorAll('.learned-btn').forEach(btn => btn.addEventListener('click', toggleLearned));
+      }
+
+      async function refreshDailyWords() {
+        wordCardsContainer.innerHTML = '<div class="empty-state">Loading fresh words…</div>';
+        dailyWords = await fetchFiveUniqueWords();
+        saveDailyWords();
+        renderDailyWords();
+      }
+
+      function saveDailyWords() {
+        localStorage.setItem('vocab_daily_words', JSON.stringify(dailyWords));
+        localStorage.setItem('vocab_daily_date', new Date().toDateString());
+      }
+
+      function loadDailyWords() {
+        const stored = localStorage.getItem('vocab_daily_words');
+        const dateStr = localStorage.getItem('vocab_daily_date');
+        const today = new Date().toDateString();
+        if (stored && dateStr === today) {
+          try { dailyWords = JSON.parse(stored); return true; } catch (e) {}
+        }
+        return false;
+      }
+
+      function loadLearnedWords() {
+        const stored = localStorage.getItem('vocab_learned_words');
+        if (stored) try { learnedWords = JSON.parse(stored); } catch (e) { learnedWords = {}; }
+      }
+
+      function saveLearnedWords() {
+        localStorage.setItem('vocab_learned_words', JSON.stringify(learnedWords));
+      }
+
+      function loadVaultTree() {
+        const stored = localStorage.getItem('vocab_vault_tree');
+        if (stored) {
+          try { vaultTree = JSON.parse(stored); } catch (e) { vaultTree = []; }
+        } else {
+          vaultTree = Object.values(learnedWords).map(w => ({
+            id: genId(),
+            type: 'word',
+            word: w.word,
+            createdAt: w.learnedAt
+          }));
+          saveVaultTree();
+        }
+      }
+
+      function saveVaultTree() {
+        localStorage.setItem('vocab_vault_tree', JSON.stringify(vaultTree));
+      }
+
+      function loadCustomDefinitions() {
+        const stored = localStorage.getItem('vocab_custom_defs');
+        if (stored) try { customDefinitions = JSON.parse(stored); } catch (e) { customDefinitions = {}; }
+      }
+
+      function saveCustomDefinitions() {
+        localStorage.setItem('vocab_custom_defs', JSON.stringify(customDefinitions));
+      }
 
       function loadUserGroups() {
         const stored = localStorage.getItem('vocab_user_groups');
-        if (stored) try { userGroups = JSON.parse(stored); } catch(e) { userGroups = []; }
+        if (stored) try { userGroups = JSON.parse(stored); } catch (e) { userGroups = []; }
       }
+
       function saveUserGroups() {
         localStorage.setItem('vocab_user_groups', JSON.stringify(userGroups));
       }
 
-      function toggleLearned(e){ const word=e.currentTarget.dataset.word; const lower=word.toLowerCase(); if(learnedWords[lower]) delete learnedWords[lower]; else{ const dw=dailyWords.find(w=>w.word.toLowerCase()===lower); learnedWords[lower]={ word, definitionHTML:dw?.definitionHTML||'', shortDef:dw?.shortDef||'', learnedAt:Date.now(), sentences:[], aiSentences: null, groups: [] }; } saveLearnedWords(); renderDailyWords(); if(currentTab==='practice'){ renderLearnedWordsList(); if(Object.keys(learnedWords).length>1 && !quizWord) startNewQuiz(); renderQuizOnly(); renderPracticeOnly(); renderAISentencesOnly(); } }
-      async function addWordToPractice(word){ const lower=word.toLowerCase(); if(!learnedWords[lower]){ learnedWords[lower]={ word, definitionHTML:'', shortDef:'', learnedAt:Date.now(), sentences:[], aiSentences: null, groups: [] }; if(customDefinitions[lower]){ const cd = customDefinitions[lower]; learnedWords[lower].definitionHTML = cd.html; learnedWords[lower].shortDef = cd.shortDef; } else { const data=await fetchFullDefinitionData(word); if(data && learnedWords[lower]){ learnedWords[lower].definitionHTML=buildDefinitionHTML(data)||''; learnedWords[lower].shortDef=getFirstShortDef(data)||''; } } saveLearnedWords(); } if(currentTab==='practice'){ renderLearnedWordsList(); if(!quizWord && Object.keys(learnedWords).length>1) startNewQuiz(); renderQuizOnly(); renderPracticeOnly(); renderAISentencesOnly(); } renderDailyWords(); searchDropdown.classList.remove('active'); searchWordInput.value=''; if(currentTab==='dictionary') applyDictionaryFilterAndRender(); }
-      function deleteWordFromPractice(word,e){ e.stopPropagation(); const lower=word.toLowerCase(); const wasQuizWord=quizWord?.toLowerCase()===lower; delete learnedWords[lower]; saveLearnedWords(); if(selectedPracticeWord?.word.toLowerCase()===lower) selectedPracticeWord=null; renderLearnedWordsList(); if(wasQuizWord || Object.keys(learnedWords).length<2){ quizWord=null; if(Object.keys(learnedWords).length>1) startNewQuiz(); renderQuizOnly(); } renderPracticeOnly(); renderAISentencesOnly(); }
-      
-      function renderLearnedWordsList(){ 
-        const term=practiceSearchInput.value.toLowerCase(); 
-        const sortBy=document.getElementById('customSortTrigger')?.dataset.value||'newest'; 
-        const filterBy=document.getElementById('customFilterTrigger')?.dataset.value||'all';
-        
-        let arr=Object.values(learnedWords).filter(w=>w.word.toLowerCase().includes(term)); 
-        
-        if (filterBy !== 'all') {
-            arr = arr.filter(w => w.groups && w.groups.includes(filterBy));
+      // --- Vault tree helpers ---
+      function isWordInVault(wordStr, ignoreNodeId = null) {
+        let found = false;
+
+        function search(nodes) {
+          for (const n of nodes) {
+            if (ignoreNodeId && n.id === ignoreNodeId) continue;
+            if (n.type === 'word' && n.word.toLowerCase() === wordStr.toLowerCase()) found = true;
+            if (n.type === 'folder') {
+              if (n.attachedWord && n.attachedWord.toLowerCase() === wordStr.toLowerCase()) found = true;
+              search(n.children);
+            }
+            if (found) return;
+          }
+        }
+        search(vaultTree);
+        return found;
+      }
+
+      function findNodeById(id) {
+        let res = null;
+
+        function search(nodes) {
+          for (const n of nodes) {
+            if (n.id === id) res = n;
+            if (n.type === 'folder') search(n.children);
+            if (res) return;
+          }
+        }
+        search(vaultTree);
+        return res;
+      }
+
+      function findNodeByWordStr(wordStr) {
+        let res = null;
+
+        function search(nodes) {
+          for (const n of nodes) {
+            if (n.type === 'word' && n.word.toLowerCase() === wordStr.toLowerCase()) res = n;
+            if (n.type === 'folder' && n.attachedWord && n.attachedWord.toLowerCase() === wordStr.toLowerCase()) res = n;
+            if (n.type === 'folder') search(n.children);
+            if (res) return;
+          }
+        }
+        search(vaultTree);
+        return res;
+      }
+
+      function findParentNode(childId) {
+        let parent = null;
+
+        function search(nodes, currentParent) {
+          for (const n of nodes) {
+            if (n.id === childId) parent = currentParent;
+            if (n.type === 'folder') search(n.children, n);
+            if (parent) return;
+          }
+        }
+        search(vaultTree, null);
+        return parent;
+      }
+
+      function removeNodeFromParent(id) {
+        const parent = findParentNode(id);
+        if (!parent) {
+          vaultTree = vaultTree.filter(n => n.id !== id);
+        } else {
+          parent.children = parent.children.filter(n => n.id !== id);
+        }
+      }
+
+      function deleteWordCompletely(wordStr) {
+        function recurseDel(nodes) {
+          for (let i = nodes.length - 1; i >= 0; i--) {
+            if (nodes[i].type === 'word' && nodes[i].word.toLowerCase() === wordStr.toLowerCase()) {
+              nodes.splice(i, 1);
+            } else if (nodes[i].type === 'folder') {
+              if (nodes[i].attachedWord && nodes[i].attachedWord.toLowerCase() === wordStr.toLowerCase()) {
+                nodes[i].attachedWord = null;
+              }
+              recurseDel(nodes[i].children);
+            }
+          }
+        }
+        recurseDel(vaultTree);
+        delete learnedWords[wordStr.toLowerCase()];
+        saveVaultTree();
+        saveLearnedWords();
+      }
+
+      function nodeMatchesFilter(node, term, group) {
+        let matchTerm = true;
+        if (term) {
+          if (node.type === 'word') matchTerm = node.word.toLowerCase().includes(term);
+          else if (node.type === 'folder') {
+            matchTerm = node.name.toLowerCase().includes(term) || (node.attachedWord && node.attachedWord.toLowerCase().includes(term));
+          }
+        }
+        let matchGroup = true;
+        if (group !== 'all' && group !== 'unassigned') {
+          if (node.type === 'word') {
+            const wData = learnedWords[node.word.toLowerCase()];
+            matchGroup = wData && wData.groups && wData.groups.includes(group);
+          } else if (node.type === 'folder') {
+            if (node.attachedWord) {
+              const wData = learnedWords[node.attachedWord.toLowerCase()];
+              matchGroup = wData && wData.groups && wData.groups.includes(group);
+            } else {
+              matchGroup = false;
+            }
+          }
+        }
+        // For "unassigned", we show everything (no group filter)
+        if (group === 'unassigned') matchGroup = true;
+
+        if (node.type === 'word') return matchTerm && matchGroup;
+        if (node.type === 'folder') {
+          if (matchTerm && matchGroup && group === 'all') return true;
+          const hasMatchingChild = node.children.some(c => nodeMatchesFilter(c, term, group));
+          return hasMatchingChild || (matchTerm && matchGroup);
+        }
+        return false;
+      }
+
+      // --- Learned / Vault rendering ---
+      function toggleLearned(e) {
+        const word = e.currentTarget.dataset.word;
+        const lower = word.toLowerCase();
+        if (learnedWords[lower]) {
+          deleteWordCompletely(lower);
+        } else {
+          const dw = dailyWords.find(w => w.word.toLowerCase() === lower);
+          learnedWords[lower] = {
+            word,
+            definitionHTML: dw?.definitionHTML || '',
+            shortDef: dw?.shortDef || '',
+            learnedAt: Date.now(),
+            sentences: [],
+            groups: []
+          };
+          vaultTree.push({ id: genId(), type: 'word', word: word, createdAt: Date.now() });
+          saveVaultTree();
+        }
+        saveLearnedWords();
+        renderDailyWords();
+        if (currentTab === 'practice') {
+          renderLearnedWordsList();
+          if (Object.keys(learnedWords).length > 1 && !quizWord) startNewQuiz();
+          renderQuizOnly();
+          renderPracticeOnly();
+        }
+      }
+
+      async function addWordToPractice(word, targetFolderId = null) {
+        const lower = word.toLowerCase();
+        if (!learnedWords[lower]) {
+          learnedWords[lower] = {
+            word,
+            definitionHTML: '',
+            shortDef: '',
+            learnedAt: Date.now(),
+            sentences: [],
+            groups: []
+          };
+          if (customDefinitions[lower]) {
+            const cd = customDefinitions[lower];
+            learnedWords[lower].definitionHTML = cd.html;
+            learnedWords[lower].shortDef = cd.shortDef;
+          } else {
+            const data = await fetchFullDefinitionData(word);
+            if (data && learnedWords[lower]) {
+              learnedWords[lower].definitionHTML = buildDefinitionHTML(data) || '';
+              learnedWords[lower].shortDef = getFirstShortDef(data) || '';
+            }
+          }
+        }
+        const newNodeId = genId();
+        const newNode = { id: newNodeId, type: 'word', word: word, createdAt: Date.now() };
+        if (targetFolderId) {
+          const parent = findNodeById(targetFolderId);
+          if (parent && parent.type === 'folder') {
+            parent.children.unshift(newNode);
+            parent.isOpen = true;
+          } else {
+            vaultTree.unshift(newNode);
+          }
+        } else {
+          vaultTree.unshift(newNode);
+        }
+        saveVaultTree();
+        saveLearnedWords();
+
+        if (currentTab === 'practice') {
+          renderLearnedWordsList();
+          if (!quizWord && Object.keys(learnedWords).length > 1) startNewQuiz();
+          selectPracticeWord(word);
+          const targetId = isWordInVault(word) ? (findNodeByWordStr(word)?.id || newNodeId) : newNodeId;
+          if (targetId) scrollToNode(targetId);
+        }
+        renderDailyWords();
+        if (searchDropdown) searchDropdown.classList.remove('active');
+        if (searchWordInput) searchWordInput.value = '';
+        activeFolderSearchId = null;
+        if (currentTab === 'dictionary') applyDictionaryFilterAndRender();
+      }
+
+      function scrollToNode(nodeId) {
+        setTimeout(() => {
+          const el = document.querySelector(`.vault-node[data-id="${nodeId}"]`);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+
+      function renderLearnedWordsList() {
+        const term = practiceSearchInput.value.toLowerCase();
+        const sortBy = document.getElementById('vaultSortBtn')?.dataset.value || 'newest';
+        const filterBy = document.getElementById('customFilterTrigger')?.dataset.value || 'unassigned';
+
+        // If filterBy is a specific group, render a flat list of words belonging to that group
+        if (filterBy !== 'unassigned' && filterBy !== 'all') {
+          const groupName = filterBy;
+          let words = Object.values(learnedWords).filter(w => w.groups && w.groups.includes(groupName));
+          // Apply search term
+          if (term) {
+            words = words.filter(w => w.word.toLowerCase().includes(term));
+          }
+          // Sort
+          if (sortBy === 'newest') words.sort((a, b) => b.learnedAt - a.learnedAt);
+          else if (sortBy === 'oldest') words.sort((a, b) => a.learnedAt - b.learnedAt);
+          else words.sort((a, b) => a.word.localeCompare(b.word));
+
+          if (!words.length) {
+            learnedWordsList.innerHTML = `<div class="empty-state">No words in group "${groupName}"</div>`;
+            return;
+          }
+
+          learnedWordsList.innerHTML = words.map(w => {
+            const isActive = selectedPracticeWord && selectedPracticeWord.word.toLowerCase() === w.word.toLowerCase();
+            return `<div class="flat-word-item ${isActive ? 'active-word' : ''}" data-word="${w.word}">
+              <span style="flex:1; cursor:pointer;">${w.word}</span>
+              <button class="delete-word-btn" data-word="${w.word}">Delete</button>
+            </div>`;
+          }).join('');
+
+          learnedWordsList.querySelectorAll('.flat-word-item span').forEach(span => {
+            span.addEventListener('click', (e) => {
+              const word = span.parentElement.dataset.word;
+              selectPracticeWord(word);
+            });
+          });
+          learnedWordsList.querySelectorAll('.delete-word-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const word = btn.dataset.word;
+              deleteWordCompletely(word);
+              renderLearnedWordsList();
+              if (selectedPracticeWord && selectedPracticeWord.word.toLowerCase() === word.toLowerCase()) {
+                selectedPracticeWord = null;
+                renderPracticeOnly();
+              }
+            });
+          });
+          return;
         }
 
-        if(sortBy==='newest') arr.sort((a,b)=>b.learnedAt-a.learnedAt); 
-        else if(sortBy==='oldest') arr.sort((a,b)=>a.learnedAt-b.learnedAt); 
-        else arr.sort((a,b)=>a.word.localeCompare(b.word)); 
-        
-        if(!arr.length) learnedWordsList.innerHTML='<div class="empty-state">No words match</div>'; 
-        else learnedWordsList.innerHTML=arr.map(w=>`<div class="word-item ${selectedPracticeWord?.word===w.word?'active-word':''}" data-word="${w.word}"><span style="flex:1;cursor:pointer;">${w.word}</span><button class="delete-word-btn" data-word="${w.word}">Delete</button></div>`).join(''); 
-        
-        document.querySelectorAll('.word-item span').forEach(span=>span.addEventListener('click',(e)=>selectPracticeWord(span.parentElement.dataset.word))); 
-        document.querySelectorAll('.delete-word-btn').forEach(btn=>btn.addEventListener('click',(e)=>deleteWordFromPractice(btn.dataset.word,e))); 
+        // Otherwise, render the vault tree (for "unassigned" or "all")
+        function sortNodes(nodes) {
+          return nodes.slice().sort((a, b) => {
+            if (a.type !== b.type) return a.type === 'folder' ? -1 : 1;
+            const nameA = (a.type === 'folder' ? a.name : a.word).toLowerCase();
+            const nameB = (b.type === 'folder' ? b.name : b.word).toLowerCase();
+            if (sortBy === 'az') return nameA.localeCompare(nameB);
+            const tA = a.createdAt || 0;
+            const tB = b.createdAt || 0;
+            return sortBy === 'newest' ? tB - tA : tA - tB;
+          });
+        }
+
+        function buildTreeHtml(nodes, depth) {
+          let res = '';
+          const sorted = sortNodes(nodes);
+          for (const node of sorted) {
+            if (!nodeMatchesFilter(node, term, filterBy)) continue;
+
+            const indent = depth * 16 + 8;
+            if (node.type === 'folder') {
+              if (node.id === editingNodeId) {
+                res += `<div class="vault-node" style="padding-left:${indent}px; cursor:default;">
+                  <input type="text" class="rename-input" data-id="${node.id}" value="${node.name}" />
+                </div>`;
+              } else {
+                const isAttachedActive = selectedPracticeWord && node.attachedWord && selectedPracticeWord.word.toLowerCase() === node.attachedWord.toLowerCase();
+                res += `<div class="vault-node vault-folder ${isAttachedActive ? 'active-word' : ''}" data-id="${node.id}" style="padding-left:${indent}px">
+                  <span class="vault-toggle ${node.isOpen ? 'open' : ''}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  </span>
+                  <span class="vault-label ${node.attachedWord ? 'attached' : ''}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                    ${node.name}
+                  </span>
+                  <div class="vault-spacer"></div>
+                  <div class="vault-actions">
+                    <button class="vault-icon-btn add-subfolder-btn" data-id="${node.id}" title="Search & Add Word">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <button class="vault-icon-btn folder-more-btn" data-id="${node.id}" data-type="folder" title="More Options">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                    </button>
+                  </div>
+                </div>`;
+              }
+
+              if (node.id === activeFolderSearchId) {
+                res += `<div class="vault-node folder-search-node" style="padding-left:${indent + 16}px; cursor:default; background:transparent;">
+                  <div style="position:relative; width:100%;">
+                    <input type="text" class="search-input folder-search-input" data-folder-id="${node.id}" placeholder="Search word to add…" />
+                    <div class="search-dropdown folder-search-dropdown" style="display:none; position:absolute; top:100%; left:0; width:100%; z-index:120; max-height:200px; overflow-y:auto;"></div>
+                  </div>
+                </div>`;
+              }
+
+              if (node.isOpen || (term && nodeMatchesFilter(node, term, filterBy))) {
+                res += buildTreeHtml(node.children, depth + 1);
+              }
+            } else {
+              const isActive = selectedPracticeWord && selectedPracticeWord.word.toLowerCase() === node.word.toLowerCase();
+              res += `<div class="vault-node vault-word ${isActive ? 'active-word' : ''}" data-id="${node.id}" style="padding-left:${indent + 22}px">
+                <span class="vault-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                  ${node.word}
+                </span>
+                <div class="vault-spacer"></div>
+                <div class="vault-actions">
+                  <button class="vault-icon-btn folder-more-btn" data-id="${node.id}" data-type="word" title="More Options">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                  </button>
+                </div>
+              </div>`;
+            }
+          }
+          return res;
+        }
+
+        const html = buildTreeHtml(vaultTree, 0);
+        if (!html) learnedWordsList.innerHTML = '<div class="empty-state">No items match</div>';
+        else learnedWordsList.innerHTML = html;
+
+        const renameInp = learnedWordsList.querySelector('.rename-input');
+        if (renameInp) {
+          renameInp.focus();
+          renameInp.select();
+        }
       }
-      function selectPracticeWord(word){ selectedPracticeWord=learnedWords[word.toLowerCase()]; renderLearnedWordsList(); renderPracticeOnly(); renderAISentencesOnly(); }
-      function generateQuizOptions(){ const correctDef=learnedWords[quizWord].shortDef; const all=Object.keys(learnedWords).filter(w=>w!==quizWord.toLowerCase()); const shuffled=all.sort(()=>Math.random()-0.5); const opts=shuffled.slice(0,3).map(w=>learnedWords[w].shortDef); opts.push(correctDef); return opts.sort(()=>Math.random()-0.5); }
-      function startNewQuiz(){ const words=Object.keys(learnedWords); if(words.length<2){ quizWord=null; return; } let newWord; const prev=quizWord; do{ newWord=words[Math.floor(Math.random()*words.length)]; }while(words.length>1 && newWord===prev); quizWord=newWord; if(!learnedWords[quizWord].shortDef){ quizWord=null; return; } quizOptions=generateQuizOptions(); quizCorrectIndex=quizOptions.indexOf(learnedWords[quizWord].shortDef); quizAnswered=false; }
-      
-      function renderQuizOnly(){ if(!quizWord || !learnedWords[quizWord]){ quizContainer.innerHTML=''; return; } const qd=learnedWords[quizWord]; quizContainer.innerHTML=`<div class="quiz-module"><div class="quiz-word-header"><div class="quiz-word-title">${qd.word}</div></div><div class="options-grid" id="quizOptionsGrid">${quizOptions.map((opt,i)=>`<button class="option-btn" data-index="${i}" ${quizAnswered?'disabled':''}>${opt}</button>`).join('')}</div><div class="quiz-feedback-row" id="quizFeedback"></div><div class="streak-row" id="streakCounter">Streak: ${quizStreak}</div><div class="quiz-actions"><button class="btn" id="skipQuizBtn">Skip</button><button class="btn" id="proceedQuizBtn" disabled>Proceed</button></div><div class="quiz-full-def-link" id="quizFullDefLink"><a href="${MW_WEB_URL}${encodeURIComponent(qd.word)}" target="_blank" rel="noopener">View on Merriam-Webster<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></div>`; if(quizAnswered) document.querySelectorAll('#quizOptionsGrid .option-btn').forEach((btn,i)=>{ btn.disabled=true; if(i===quizCorrectIndex) btn.classList.add('selected-correct'); }); document.querySelectorAll('.option-btn').forEach(btn=>btn.addEventListener('click',handleQuizAnswer)); document.getElementById('skipQuizBtn')?.addEventListener('click',()=>{ quizStreak=0; startNewQuiz(); renderQuizOnly(); }); document.getElementById('proceedQuizBtn')?.addEventListener('click',()=>{ startNewQuiz(); renderQuizOnly(); }); }
-      function handleQuizAnswer(e){ if(quizAnswered) return; const idx=parseInt(e.target.dataset.index); const fb=document.getElementById('quizFeedback'); const proceed=document.getElementById('proceedQuizBtn'); const fullDefLink=document.getElementById('quizFullDefLink'); const btns=document.querySelectorAll('#quizOptionsGrid .option-btn'); quizAnswered=true; const correctDef=quizOptions[quizCorrectIndex]; btns.forEach((btn,i)=>{ btn.disabled=true; if(i===quizCorrectIndex) btn.classList.add('selected-correct'); else if(i===idx) btn.classList.add('selected-wrong'); else btn.classList.add('dimmed'); }); if(idx===quizCorrectIndex){ quizStreak++; fb.innerHTML=`<span style="color:#4a624d;">Correct</span><span style="color:#7a7268;margin-left:6px;">— ${correctDef}</span>`; proceed.style.background='#3e5141'; proceed.style.color='#fff'; proceed.style.borderColor='#3e5141'; } else{ quizStreak=0; fb.innerHTML=`<span style="color:#b85c5c;">Incorrect</span><span style="color:#7a7268;margin-left:6px;">— ${correctDef}</span>`; proceed.style.background='#b85c5c'; proceed.style.color='#fff'; proceed.style.borderColor='#b85c5c'; } document.getElementById('streakCounter').textContent=`Streak: ${quizStreak}`; proceed.disabled=false; if(fullDefLink) fullDefLink.classList.add('visible'); }
-      
-      function levenshteinDistance(a,b){ if(!a.length) return b.length; if(!b.length) return a.length; const matrix=[]; for(let i=0;i<=b.length;i++) matrix[i]=[i]; for(let j=0;j<=a.length;j++) matrix[0][j]=j; for(let i=1;i<=b.length;i++) for(let j=1;j<=a.length;j++) if(b.charAt(i-1)===a.charAt(j-1)) matrix[i][j]=matrix[i-1][j-1]; else matrix[i][j]=Math.min(matrix[i-1][j-1]+1,matrix[i][j-1]+1,matrix[i-1][j]+1); return matrix[b.length][a.length]; }
-      function renderTypeSection(wd){ return `<div class="type-section"><div class="section-title">Writing practice (${wd.sentences?.length||0}/40)</div><textarea class="sentence-input" id="sentenceInput" rows="2" placeholder="Write a sentence using '${wd.word}'"></textarea><button class="btn btn-primary" id="submitSentenceBtn">Submit sentence</button><div class="feedback-text" id="sentenceFeedback"></div><div class="sentences-dropdown" id="sentencesDropdown">${(wd.sentences||[]).length===0?'<div class="sentence-item" style="color:#a39c91; font-style:italic;">No sentences yet</div>':(wd.sentences||[]).map((s,i)=>`<div class="sentence-item"><span class="sentence-number">${i+1}.</span><span>${s}</span></div>`).join('')}</div></div>`; }
-      function attachTypeListeners(wd){ 
-        const submitBtn = document.getElementById('submitSentenceBtn');
-        const sentenceInput = document.getElementById('sentenceInput');
-        if (!submitBtn || !sentenceInput) return;
-        submitBtn.addEventListener('click', () => { submitSentence(wd); });
-        sentenceInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            submitSentence(wd);
+
+      function selectPracticeWord(word) {
+        if (!learnedWords[word.toLowerCase()]) return;
+        selectedPracticeWord = learnedWords[word.toLowerCase()];
+        renderLearnedWordsList();
+        renderPracticeOnly();
+      }
+
+      // --- Vault event handling ---
+      learnedWordsList.addEventListener('click', (e) => {
+        const nodeEl = e.target.closest('.vault-node');
+        if (!nodeEl) return;
+        const id = nodeEl.dataset.id;
+        const node = findNodeById(id);
+
+        if (e.target.closest('.add-subfolder-btn')) {
+          e.stopPropagation();
+          if (node && node.type === 'folder') {
+            activeFolderSearchId = activeFolderSearchId === node.id ? null : node.id;
+            node.isOpen = true;
+            saveVaultTree();
+            renderLearnedWordsList();
+
+            if (activeFolderSearchId) {
+              setTimeout(() => {
+                const inp = document.querySelector(`.folder-search-input[data-folder-id="${node.id}"]`);
+                if (inp) inp.focus();
+              }, 50);
+            }
+          }
+          return;
+        }
+
+        if (e.target.closest('.folder-more-btn')) {
+          e.stopPropagation();
+          contextMenuNodeId = e.target.closest('.folder-more-btn').dataset.id;
+          contextMenuNodeType = e.target.closest('.folder-more-btn').dataset.type;
+
+          const ctxMakeFolderWord = document.getElementById('ctxMakeFolderWord');
+          const ctxMakeWord = document.getElementById('ctxMakeWord');
+          const ctxRename = document.getElementById('ctxRename');
+
+          if (contextMenuNodeType === 'word') {
+            ctxMakeFolderWord.style.display = 'block';
+            ctxMakeWord.style.display = 'none';
+            ctxRename.style.display = 'none';
+          } else {
+            ctxMakeFolderWord.style.display = 'none';
+            ctxMakeWord.style.display = 'block';
+            ctxRename.style.display = 'block';
+          }
+
+          const rect = e.target.closest('.folder-more-btn').getBoundingClientRect();
+          vaultContextMenu.style.display = 'block';
+          vaultContextMenu.style.left = `${rect.right + 5}px`;
+          vaultContextMenu.style.top = `${rect.top}px`;
+          if (rect.top + vaultContextMenu.offsetHeight > window.innerHeight) {
+            vaultContextMenu.style.top = `${window.innerHeight - vaultContextMenu.offsetHeight - 10}px`;
+          }
+          return;
+        }
+
+        if (e.target.closest('.vault-toggle')) {
+          e.stopPropagation();
+          if (node && node.type === 'folder') {
+            node.isOpen = !node.isOpen;
+            saveVaultTree();
+            renderLearnedWordsList();
+          }
+          return;
+        }
+
+        if (e.target.closest('.vault-label')) {
+          e.stopPropagation();
+          if (node) {
+            if (node.type === 'folder' && node.attachedWord) {
+              selectPracticeWord(node.attachedWord);
+            } else if (node.type === 'word') {
+              selectPracticeWord(node.word);
+            } else {
+              node.isOpen = !node.isOpen;
+              saveVaultTree();
+              renderLearnedWordsList();
+            }
+          }
+          return;
+        }
+
+        if (node) {
+          if (node.type === 'folder') {
+            node.isOpen = !node.isOpen;
+            saveVaultTree();
+            renderLearnedWordsList();
+          } else {
+            selectPracticeWord(node.word);
+          }
+        }
+      });
+
+      learnedWordsList.addEventListener('blur', (e) => {
+        if (e.target.classList.contains('rename-input')) {
+          handleRename(e.target);
+        }
+      }, true);
+
+      learnedWordsList.addEventListener('keydown', (e) => {
+        if (e.target.classList.contains('rename-input') && e.key === 'Enter') {
+          handleRename(e.target);
+        }
+      });
+
+      function handleRename(inputEl) {
+        const id = inputEl.dataset.id;
+        const node = findNodeById(id);
+        if (node && node.type === 'folder') {
+          const val = inputEl.value.trim();
+          node.name = val || "Untitled folder";
+          editingNodeId = null;
+          saveVaultTree();
+          renderLearnedWordsList();
+        }
+      }
+
+      learnedWordsList.addEventListener('input', async (e) => {
+        if (e.target.classList.contains('folder-search-input')) {
+          const dropdown = e.target.nextElementSibling;
+          const folderId = e.target.dataset.folderId;
+          handleSearchInputShared(e, dropdown, folderId);
+        }
+      });
+
+      async function handleSearchInputShared(e, dropdown, folderId = null) {
+        const val = e.target.value.toLowerCase().trim();
+        if (!val) {
+          dropdown.style.display = 'none';
+          dropdown.classList.remove('active');
+          return;
+        }
+        if (!combinedWordList) await fetchCombinedWordList();
+        const matches = combinedWordList.filter(w => w.startsWith(val)).slice(0, 50);
+        if (matches.length === 0) {
+          dropdown.innerHTML = `<div class="search-result-item" style="color:#a39c91;">No results</div>`;
+        } else {
+          dropdown.innerHTML = matches.map(w => {
+            return `<div class="search-result-item" data-word="${w}">
+              <span style="font-weight:500;">${w}</span>
+              <button class="add-to-practice-btn">Add</button>
+            </div>`;
+          }).join('');
+
+          dropdown.querySelectorAll('.search-result-item').forEach(item => {
+            item.addEventListener('click', (ev) => {
+              ev.stopPropagation();
+              const w = item.dataset.word;
+              addWordToPractice(w, folderId);
+              // Close the search input after adding
+              activeFolderSearchId = null;
+              renderLearnedWordsList();
+            });
+          });
+        }
+        dropdown.style.display = 'block';
+        dropdown.classList.add('active');
+      }
+
+      // Close folder search when clicking outside
+      document.addEventListener('click', (e) => {
+        if (activeFolderSearchId) {
+          const searchNode = document.querySelector(`.folder-search-node`);
+          if (searchNode && !searchNode.contains(e.target)) {
+            activeFolderSearchId = null;
+            renderLearnedWordsList();
+          }
+        }
+        // Also close other dropdowns
+        if (vaultContextMenu && !vaultContextMenu.contains(e.target) && !e.target.closest('.folder-more-btn')) {
+          vaultContextMenu.style.display = 'none';
+        }
+        const vwrap = document.getElementById('vaultSortWrapper');
+        if (vwrap && !vwrap.contains(e.target)) {
+          document.getElementById('vaultSortDropdown').classList.remove('active');
+        }
+        const fwrap = document.getElementById('customFilterWrapper');
+        if (fwrap && !fwrap.contains(e.target)) {
+          document.getElementById('customFilterDropdown').classList.remove('active');
+        }
+        if (searchDropdown && !searchWordInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+          searchDropdown.classList.remove('active');
+          searchDropdown.style.display = 'none';
+        }
+        document.querySelectorAll('.folder-search-dropdown').forEach(dd => {
+          if (dd.classList.contains('active')) {
+            const inp = dd.previousElementSibling;
+            if (e.target !== inp && !dd.contains(e.target)) {
+              dd.classList.remove('active');
+              dd.style.display = 'none';
+            }
+          }
+        });
+      });
+
+      // --- Context menu actions ---
+      document.getElementById('ctxMakeFolderWord').addEventListener('click', () => {
+        vaultContextMenu.style.display = 'none';
+        const node = findNodeById(contextMenuNodeId);
+        if (node && node.type === 'word') {
+          node.type = 'folder';
+          node.name = node.word;
+          node.attachedWord = node.word;
+          node.children = [];
+          delete node.word;
+          saveVaultTree();
+          renderLearnedWordsList();
+        }
+      });
+
+      document.getElementById('ctxMakeWord').addEventListener('click', async () => {
+        vaultContextMenu.style.display = 'none';
+        const word = await customPrompt("Enter the word to attach to this folder:");
+        if (word && word.trim()) {
+          const wStr = word.trim();
+          const node = findNodeById(contextMenuNodeId);
+          node.attachedWord = wStr;
+          if (!learnedWords[wStr.toLowerCase()]) {
+            addWordToPractice(wStr).then(() => {
+              const rootNodeIdx = vaultTree.findIndex(n => n.type === 'word' && n.word.toLowerCase() === wStr.toLowerCase());
+              if (rootNodeIdx !== -1) {
+                vaultTree.splice(rootNodeIdx, 1);
+                saveVaultTree();
+                renderLearnedWordsList();
+              }
+            });
+          } else {
+            saveVaultTree();
+            renderLearnedWordsList();
+          }
+        }
+      });
+
+      document.getElementById('ctxRename').addEventListener('click', () => {
+        vaultContextMenu.style.display = 'none';
+        editingNodeId = contextMenuNodeId;
+        renderLearnedWordsList();
+      });
+
+      function deepCopyNode(node) {
+        const copy = JSON.parse(JSON.stringify(node));
+
+        function rerollIds(n) {
+          n.id = genId();
+          if (n.type === 'folder') {
+            n.attachedWord = null;
+            n.children.forEach(rerollIds);
+          }
+        }
+        rerollIds(copy);
+        return copy;
+      }
+
+      document.getElementById('ctxCopy').addEventListener('click', () => {
+        vaultContextMenu.style.display = 'none';
+        const node = findNodeById(contextMenuNodeId);
+        if (!node) return;
+        const copy = deepCopyNode(node);
+        if (copy.type === 'folder') copy.name += " (Copy)";
+        const parent = findParentNode(contextMenuNodeId);
+        if (parent) parent.children.push(copy);
+        else vaultTree.push(copy);
+        saveVaultTree();
+        renderLearnedWordsList();
+      });
+
+      document.getElementById('ctxDelete').addEventListener('click', async () => {
+        vaultContextMenu.style.display = 'none';
+        const node = findNodeById(contextMenuNodeId);
+        const nodeTypeDesc = node.type === 'folder' ? 'folder and its contents' : 'word';
+        const confirm = await customConfirm("Confirm Deletion", `Are you sure you want to remove this ${nodeTypeDesc}?`);
+        if (confirm) {
+          removeNodeFromParent(contextMenuNodeId);
+          if (node.type === 'word' || (node.type === 'folder' && node.attachedWord)) {
+            if (selectedPracticeWord && (selectedPracticeWord.word.toLowerCase() === (node.word || node.attachedWord).toLowerCase())) {
+              selectedPracticeWord = null;
+            }
+            const tgtWord = node.word || node.attachedWord;
+            if (quizWord?.toLowerCase() === tgtWord.toLowerCase() || Object.keys(learnedWords).length < 2) {
+              quizWord = null;
+              if (Object.keys(learnedWords).length > 1) startNewQuiz();
+              renderQuizOnly();
+            }
+          }
+          saveVaultTree();
+          renderLearnedWordsList();
+          renderPracticeOnly();
+        }
+      });
+
+      document.getElementById('ctxMove').addEventListener('click', () => {
+        vaultContextMenu.style.display = 'none';
+        const sel = document.getElementById('moveSelect');
+        sel.innerHTML = '<option value="root">/ (Root)</option>';
+
+        function isDescendant(checkId, ancestorId) {
+          if (checkId === ancestorId) return true;
+          const parent = findParentNode(checkId);
+          if (!parent) return false;
+          return isDescendant(parent.id, ancestorId);
+        }
+
+        function addFolderOptions(nodes, depthString) {
+          for (const n of nodes) {
+            if (n.type === 'folder' && !isDescendant(n.id, contextMenuNodeId)) {
+              sel.innerHTML += `<option value="${n.id}">${depthString}${n.name}</option>`;
+              addFolderOptions(n.children, depthString + "---");
+            }
+          }
+        }
+        addFolderOptions(vaultTree, "- ");
+        document.getElementById('moveModal').classList.add('active');
+      });
+
+      document.getElementById('cancelMoveBtn').addEventListener('click', () => {
+        document.getElementById('moveModal').classList.remove('active');
+      });
+
+      document.getElementById('confirmMoveBtn').addEventListener('click', () => {
+        const targetId = document.getElementById('moveSelect').value;
+        const node = findNodeById(contextMenuNodeId);
+        removeNodeFromParent(contextMenuNodeId);
+        if (targetId === 'root') {
+          vaultTree.push(node);
+        } else {
+          const target = findNodeById(targetId);
+          if (target) {
+            target.children.push(node);
+            target.isOpen = true;
+          } else {
+            vaultTree.push(node);
+          }
+        }
+        saveVaultTree();
+        renderLearnedWordsList();
+        document.getElementById('moveModal').classList.remove('active');
+      });
+
+      // --- Quiz ---
+      function generateQuizOptions() {
+        const correctDef = learnedWords[quizWord].shortDef;
+        const all = Object.keys(learnedWords).filter(w => w !== quizWord.toLowerCase());
+        const shuffled = all.sort(() => Math.random() - 0.5);
+        const opts = shuffled.slice(0, 3).map(w => learnedWords[w].shortDef);
+        opts.push(correctDef);
+        return opts.sort(() => Math.random() - 0.5);
+      }
+
+      function startNewQuiz() {
+        const words = Object.keys(learnedWords);
+        if (words.length < 2) { quizWord = null; return; }
+        let newWord;
+        const prev = quizWord;
+        do {
+          newWord = words[Math.floor(Math.random() * words.length)];
+        } while (words.length > 1 && newWord === prev);
+        quizWord = newWord;
+        if (!learnedWords[quizWord].shortDef) { quizWord = null; return; }
+        quizOptions = generateQuizOptions();
+        quizCorrectIndex = quizOptions.indexOf(learnedWords[quizWord].shortDef);
+        quizAnswered = false;
+      }
+
+      function renderQuizOnly() {
+        if (!quizWord || !learnedWords[quizWord]) { quizContainer.innerHTML = ''; return; }
+        const qd = learnedWords[quizWord];
+        quizContainer.innerHTML = `<div class="quiz-module"><div class="quiz-word-header"><div class="quiz-word-title">${qd.word}</div></div><div class="options-grid" id="quizOptionsGrid">${quizOptions.map((opt, i) => `<button class="option-btn" data-index="${i}" ${quizAnswered?'disabled':''}>${opt}</button>`).join('')}</div><div class="quiz-feedback-row" id="quizFeedback"></div><div class="streak-row" id="streakCounter">Streak: ${quizStreak}</div><div class="quiz-actions"><button class="btn" id="skipQuizBtn">Skip</button><button class="btn" id="proceedQuizBtn" disabled>Proceed</button></div><div class="quiz-full-def-link" id="quizFullDefLink"><a href="${MW_WEB_URL}${encodeURIComponent(qd.word)}" target="_blank" rel="noopener">View on Merriam-Webster<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></div>`;
+        if (quizAnswered) document.querySelectorAll('#quizOptionsGrid .option-btn').forEach((btn, i) => {
+          btn.disabled = true;
+          if (i === quizCorrectIndex) btn.classList.add('selected-correct');
+        });
+        document.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleQuizAnswer));
+        document.getElementById('skipQuizBtn')?.addEventListener('click', () => {
+          quizStreak = 0;
+          startNewQuiz();
+          renderQuizOnly();
+        });
+        document.getElementById('proceedQuizBtn')?.addEventListener('click', () => {
+          startNewQuiz();
+          renderQuizOnly();
+        });
+      }
+
+      function handleQuizAnswer(e) {
+        if (quizAnswered) return;
+        const idx = parseInt(e.target.dataset.index);
+        const fb = document.getElementById('quizFeedback');
+        const proceed = document.getElementById('proceedQuizBtn');
+        const fullDefLink = document.getElementById('quizFullDefLink');
+        const btns = document.querySelectorAll('#quizOptionsGrid .option-btn');
+        quizAnswered = true;
+        const correctDef = quizOptions[quizCorrectIndex];
+        btns.forEach((btn, i) => {
+          btn.disabled = true;
+          if (i === quizCorrectIndex) btn.classList.add('selected-correct');
+          else if (i === idx) btn.classList.add('selected-wrong');
+          else btn.classList.add('dimmed');
+        });
+        if (idx === quizCorrectIndex) {
+          quizStreak++;
+          fb.innerHTML = `<span style="color:#4a624d;">Correct</span><span style="color:#7a7268;margin-left:6px;">— ${correctDef}</span>`;
+          proceed.style.background = '#3e5141';
+          proceed.style.color = '#fff';
+          proceed.style.borderColor = '#3e5141';
+        } else {
+          quizStreak = 0;
+          fb.innerHTML = `<span style="color:#b85c5c;">Incorrect</span><span style="color:#7a7268;margin-left:6px;">— ${correctDef}</span>`;
+          proceed.style.background = '#b85c5c';
+          proceed.style.color = '#fff';
+          proceed.style.borderColor = '#b85c5c';
+        }
+        document.getElementById('streakCounter').textContent = `Streak: ${quizStreak}`;
+        proceed.disabled = false;
+        if (fullDefLink) fullDefLink.classList.add('visible');
+      }
+
+      // --- Practice writing ---
+      function renderTypeSection(wd) {
+        return `<div class="type-section"><div class="section-title">Writing practice (${wd.sentences?.length || 0}/40)</div><textarea class="sentence-input" id="sentenceInput" rows="2" placeholder="Write a sentence using '${wd.word}'"></textarea><button class="btn btn-primary" id="submitSentenceBtn">Submit sentence</button><div class="feedback-text" id="sentenceFeedback"></div><div class="sentences-dropdown" id="sentencesDropdown">${(wd.sentences || []).length === 0 ? '<div class="sentence-item" style="color:#a39c91;">No sentences yet.</div>' : (wd.sentences || []).map((s, i) => `<div class="sentence-item"><span class="sentence-number">${i+1}.</span><span>${s}</span></div>`).join('')}</div></div>`;
+      }
+
+      function renderPracticeOnly() {
+        if (!selectedPracticeWord) { practiceHeaderContainer.innerHTML = ''; typeContainer.innerHTML = ''; return; }
+        const wd = selectedPracticeWord;
+        practiceHeaderContainer.innerHTML = `<div class="practice-word-header"><div class="practice-word-title-row"><div class="practice-word-title">${wd.word}</div></div><div class="practice-full-def">${wd.definitionHTML || wd.shortDef || 'Definition not available.'}</div></div>`;
+        typeContainer.innerHTML = renderTypeSection(wd);
+        document.getElementById('submitSentenceBtn').addEventListener('click', () => {
+          const val = document.getElementById('sentenceInput').value.trim();
+          if (val) {
+            if (!wd.sentences) wd.sentences = [];
+            wd.sentences.push(val);
+            saveLearnedWords();
+            renderPracticeOnly();
           }
         });
       }
-      
-      function submitSentence(wd) {
-        const inp = document.getElementById('sentenceInput');
-        const fb = document.getElementById('sentenceFeedback');
-        const sentence = inp.value.trim();
-        
-        if (!sentence) {
-          fb.textContent = 'Please write a sentence.';
-          fb.style.color = '#b85c5c';
-          return;
-        }
-        
-        if (!sentence.toLowerCase().includes(wd.word.toLowerCase())) {
-          fb.textContent = 'Sentence must contain the word.';
-          fb.style.color = '#b85c5c';
-          return;
-        }
-        
-        const existing = wd.sentences || [];
-        const tooSimilar = existing.some(s => levenshteinDistance(s.toLowerCase(), sentence.toLowerCase()) < Math.min(s.length, sentence.length) * 0.4);
-        
-        if (tooSimilar) {
-          fb.textContent = 'Too similar to a previous sentence.';
-          fb.style.color = '#b85c5c';
-          return;
-        }
-        
-        if (existing.length >= 40) {
-          fb.textContent = '40 sentences reached.';
-          fb.style.color = '#b85c5c';
-          return;
-        }
-        
-        wd.sentences.push(sentence);
-        learnedWords[wd.word.toLowerCase()] = wd;
-        saveLearnedWords();
-        inp.value = '';
-        fb.textContent = `Added (${wd.sentences.length}/40)`;
-        fb.style.color = '#4a624d';
-        renderPracticeOnly();
-      }
-      function renderPracticeOnly(){ 
-        const display=selectedPracticeWord||Object.values(learnedWords)[0]; 
-        if(!display){ 
-          practiceHeaderContainer.innerHTML=''; 
-          typeContainer.innerHTML='<div class="empty-state">Select a word from the sidebar to practice writing.</div>'; 
-          return; 
-        } 
-        
-        const groupsHtml = (display.groups || []).map(g => `<span class="group-tag">${g}</span>`).join('');
-        
-        practiceHeaderContainer.innerHTML=`
-          <div class="practice-word-header">
-            <div class="practice-word-title-row">
-              <div class="practice-word-title">${display.word}</div>
-              <div class="group-tags-container" style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-                ${groupsHtml}
-              </div>
-              <div style="flex:1;"></div>
-              <a class="view-full-def" href="${MW_WEB_URL}${encodeURIComponent(display.word)}" target="_blank" rel="noopener">View on Merriam-Webster<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-              <button class="btn" id="openManageGroupsBtn" style="padding:4px 8px; font-size:12px;">Add to group</button>
-            </div>
-            <div class="practice-full-def">${display.definitionHTML||display.shortDef||'No definition available.'}</div>
-          </div>
-        `; 
-        
-        typeContainer.innerHTML=renderTypeSection(display); 
-        attachTypeListeners(display); 
-        
-        document.getElementById('openManageGroupsBtn')?.addEventListener('click', () => openGroupModal(display.word));
-      }
 
-      /* --- GROUPS MANAGEMENT LOGIC --- */
+      // --- Groups ---
       function renderGroupFilterDropdown() {
         const dropdown = document.getElementById('customFilterDropdown');
-        dropdown.innerHTML = '<div class="custom-select-option" data-value="all">All Groups</div>' +
-            userGroups.map(g => `<div class="custom-select-option" data-value="${g}">${g}</div>`).join('');
-        
+        dropdown.innerHTML = '<div class="custom-select-option" data-value="unassigned">Unassigned</div>' +
+          userGroups.map(g => `<div class="custom-select-option" data-value="${g}">${g}</div>`).join('');
+
         dropdown.querySelectorAll('.custom-select-option').forEach(opt => {
-            opt.addEventListener('click', (e) => {
-                const trigger = document.getElementById('customFilterTrigger');
-                trigger.textContent = e.target.textContent;
-                trigger.dataset.value = e.target.dataset.value;
-                dropdown.classList.remove('active');
-                renderLearnedWordsList();
-            });
+          opt.addEventListener('click', (e) => {
+            const trigger = document.getElementById('customFilterTrigger');
+            trigger.textContent = e.target.textContent;
+            trigger.dataset.value = e.target.dataset.value;
+            dropdown.classList.remove('active');
+            renderLearnedWordsList();
+          });
         });
       }
 
       function openGroupModal(word) {
-          currentEditingWord = word;
-          document.getElementById('groupModalWordName').textContent = `Select groups for "${word}"`;
-          renderGroupModalList();
-          document.getElementById('groupModal').classList.add('active');
+        currentEditingWord = word;
+        document.getElementById('groupModalWordName').textContent = `Select groups for "${word}"`;
+        renderGroupModalList();
+        document.getElementById('groupModal').classList.add('active');
       }
 
       function closeGroupModal() {
-          document.getElementById('groupModal').classList.remove('active');
-          renderPracticeOnly(); 
+        document.getElementById('groupModal').classList.remove('active');
+        renderPracticeOnly();
       }
 
       function renderGroupModalList() {
-          const list = document.getElementById('groupModalList');
-          const wordData = learnedWords[currentEditingWord.toLowerCase()];
-          const wordGroups = wordData.groups || [];
-          
-          if (userGroups.length === 0) {
-              list.innerHTML = '<div class="empty-state" style="padding: 20px 0;">No groups created yet.</div>';
-              return;
-          }
-          
-          list.innerHTML = userGroups.map(g => {
-              const isChecked = wordGroups.includes(g) ? 'checked' : '';
-              return `
-              <div style="display:flex; justify-content:space-between; align-items:center; padding: 8px 12px; background:#faf8f5; border:1px solid #e6e2d8; border-radius:6px;">
-                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1;">
-                  <input type="checkbox" class="group-checkbox" data-group="${g}" ${isChecked}>
-                  <span style="font-size:14px; color:#2d2824; font-weight:500;">${g}</span>
-                </label>
-                <button class="delete-group-btn" data-group="${g}" style="background:none; border:none; color:#b85c5c; cursor:pointer; font-size:12px; padding:4px;">Delete</button>
-              </div>`;
-          }).join('');
-          
-          document.querySelectorAll('.group-checkbox').forEach(cb => {
-              cb.addEventListener('change', (e) => {
-                  const grp = e.target.dataset.group;
-                  if (e.target.checked) {
-                      if (!wordData.groups) wordData.groups = [];
-                      if (!wordData.groups.includes(grp)) wordData.groups.push(grp);
-                  } else {
-                      if (wordData.groups) {
-                          wordData.groups = wordData.groups.filter(x => x !== grp);
-                      }
-                  }
-                  saveLearnedWords();
-              });
+        const list = document.getElementById('groupModalList');
+        const wordData = learnedWords[currentEditingWord.toLowerCase()];
+        const wordGroups = wordData.groups || [];
+
+        if (userGroups.length === 0) {
+          list.innerHTML = '<div class="empty-state" style="padding: 20px 0;">No groups created yet.</div>';
+          return;
+        }
+
+        list.innerHTML = userGroups.map(g => {
+          const isChecked = wordGroups.includes(g) ? 'checked' : '';
+          return `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: 8px 12px; background:#faf8f5; border:1px solid #e6e2d8; border-radius:6px;">
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; flex:1;">
+                <input type="checkbox" class="group-checkbox" data-group="${g}" ${isChecked}>
+                <span style="font-size:14px; color:#2d2824; font-weight:500;">${g}</span>
+              </label>
+              <button class="delete-group-btn" data-group="${g}" style="background:none; border:none; color:#b85c5c; cursor:pointer; font-size:12px; padding:4px;">Delete</button>
+            </div>`;
+        }).join('');
+
+        document.querySelectorAll('.group-checkbox').forEach(cb => {
+          cb.addEventListener('change', (e) => {
+            const grp = e.target.dataset.group;
+            if (e.target.checked) {
+              if (!wordData.groups) wordData.groups = [];
+              if (!wordData.groups.includes(grp)) wordData.groups.push(grp);
+            } else {
+              if (wordData.groups) {
+                wordData.groups = wordData.groups.filter(x => x !== grp);
+              }
+            }
+            saveLearnedWords();
           });
-          
-          document.querySelectorAll('.delete-group-btn').forEach(btn => {
-              btn.addEventListener('click', (e) => {
-                  const grp = e.target.dataset.group;
-                  if(confirm(`Are you sure you want to delete the group "${grp}"? It will be removed from all words.`)) {
-                      userGroups = userGroups.filter(x => x !== grp);
-                      saveUserGroups();
-                      Object.values(learnedWords).forEach(w => {
-                          if(w.groups) w.groups = w.groups.filter(x => x !== grp);
-                      });
-                      saveLearnedWords();
-                      renderGroupModalList();
-                      renderGroupFilterDropdown();
-                      const trigger = document.getElementById('customFilterTrigger');
-                      if (trigger.dataset.value === grp) {
-                          trigger.textContent = 'All Groups';
-                          trigger.dataset.value = 'all';
-                          renderLearnedWordsList();
-                      }
-                  }
+        });
+
+        document.querySelectorAll('.delete-group-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const grp = e.target.dataset.group;
+            if (confirm(`Are you sure you want to delete the group "${grp}"? It will be removed from all words.`)) {
+              userGroups = userGroups.filter(x => x !== grp);
+              saveUserGroups();
+              Object.values(learnedWords).forEach(w => {
+                if (w.groups) w.groups = w.groups.filter(x => x !== grp);
               });
+              saveLearnedWords();
+              renderGroupModalList();
+              renderGroupFilterDropdown();
+              const trigger = document.getElementById('customFilterTrigger');
+              if (trigger.dataset.value === grp) {
+                trigger.textContent = 'Unassigned';
+                trigger.dataset.value = 'unassigned';
+                renderLearnedWordsList();
+              }
+            }
           });
+        });
       }
 
       document.getElementById('createNewGroupBtn')?.addEventListener('click', () => {
-          const input = document.getElementById('newGroupInput');
-          const val = input.value.trim();
-          if (!val) return;
-          if (userGroups.includes(val)) {
-              alert('Group already exists.');
-              return;
-          }
-          userGroups.push(val);
-          saveUserGroups();
-          renderGroupFilterDropdown();
-          renderGroupModalList();
-          input.value = '';
+        const input = document.getElementById('newGroupInput');
+        const val = input.value.trim();
+        if (!val) return;
+        if (userGroups.includes(val)) {
+          alert('Group already exists.');
+          return;
+        }
+        userGroups.push(val);
+        saveUserGroups();
+        renderGroupFilterDropdown();
+        renderGroupModalList();
+        input.value = '';
       });
 
       document.getElementById('closeGroupModalBtn')?.addEventListener('click', closeGroupModal);
 
-      /* --- FIXED AI SENTENCES GENERATION USING JSONP-STYLE APPROACH --- */
-      async function generateAISentences(word) {
-        const prompt = `Generate exactly 7 unique, clear, and highly illustrative educational example sentences using the word "${word}". Return ONLY a valid JSON array of 7 strings. Example format: ["sentence1", "sentence2", ...]`;
-        
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 10000);
-          
-          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`, {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json',
-            },
-            mode: 'cors',
-            signal: controller.signal,
-            body: JSON.stringify({
-              contents: [{
-                parts: [{
-                  text: prompt
-                }]
-              }],
-              generationConfig: {
-                temperature: 0.7,
-                topK: 1,
-                topP: 1,
-                maxOutputTokens: 1024,
-              }
-            })
-          });
-          
-          clearTimeout(timeoutId);
-          
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-          }
-          
-          const data = await response.json();
-          
-          if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
-            const text = data.candidates[0].content.parts[0].text;
-            let cleanedText = text.trim();
-            if (cleanedText.startsWith('```json')) {
-              cleanedText = cleanedText.substring(7);
-            } else if (cleanedText.startsWith('```')) {
-              cleanedText = cleanedText.substring(3);
-            }
-            if (cleanedText.endsWith('```')) {
-              cleanedText = cleanedText.substring(0, cleanedText.length - 3);
-            }
-            
-            const sentences = JSON.parse(cleanedText);
-            if (Array.isArray(sentences) && sentences.length > 0) {
-              if (sentences.length >= 7) return sentences.slice(0, 7);
-              const generic = [
-                `"${word}" is an important word to learn.`,
-                `Using "${word}" correctly improves your vocabulary.`,
-                `Practice writing sentences with "${word}".`,
-                `The word "${word}" appears in many contexts.`,
-                `Mastering "${word}" will help you communicate better.`
-              ];
-              while (sentences.length < 7) {
-                sentences.push(generic[sentences.length % generic.length]);
-              }
-              return sentences;
-            }
-          }
-          throw new Error('Invalid response format');
-        } catch (error) {
-          console.error('AI Generation Error:', error);
-          return [
-            `Learning to use "${word}" in context will improve your English skills.`,
-            `Can you write an original sentence using the word "${word}"?`,
-            `The vocabulary word "${word}" has many practical applications.`,
-            `Understanding "${word}" helps expand your linguistic abilities.`,
-            `Practice using "${word}" in both written and spoken English.`,
-            `Review the definition of "${word}" before creating your own sentences.`,
-            `Using "${word}" correctly demonstrates strong language proficiency.`
-          ];
-        }
-      }
-
-      function highlightWord(sentence, word) {
-        const regex = new RegExp(`\\b(${word}[a-z]*)\\b`, 'gi');
-        return sentence.replace(regex, '<strong>$1</strong>');
-      }
-
-      function renderAISentencesOnly() {
-        const display = selectedPracticeWord || Object.values(learnedWords)[0];
-        if(!display) {
-          aiSentencesContainer.innerHTML = '';
-          return;
-        }
-
-        const hasSentences = display.aiSentences && display.aiSentences.length > 0;
-        
-        aiSentencesContainer.innerHTML = `
-          <div class="ai-module">
-            <div class="ai-header">
-              <div class="ai-title">
-                <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                AI Examples
-              </div>
-              ${hasSentences ? `<button class="ai-refresh-btn" id="refreshAiBtn" title="Regenerate Sentences"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></button>` : ''}
-            </div>
-            <div class="ai-content" id="aiContentArea">
-              ${hasSentences 
-                ? display.aiSentences.map(s => `<div class="ai-sentence-item">${highlightWord(s, display.word)}</div>`).join('')
-                : `<button class="ai-generate-btn" id="generateAiBtn"><svg class="ai-icon" style="stroke:#fff; width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg> Generate 7 example sentences</button>`
-              }
-            </div>
-          </div>
-        `;
-
-        const generateBtn = document.getElementById('generateAiBtn');
-        const refreshBtn = document.getElementById('refreshAiBtn');
-
-        const triggerGeneration = async (btn) => {
-          if (!btn) return;
-          const originalText = btn.innerHTML;
-          btn.innerHTML = '<span style="display:flex;align-items:center;gap:6px;"><svg class="ai-icon" style="stroke:#fff; width:14px; height:14px; animation: spin 1s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/></svg> Generating...</span>';
-          btn.disabled = true;
-          
-          if (!document.querySelector('#spinStyle')) {
-            const style = document.createElement('style');
-            style.id = 'spinStyle';
-            style.textContent = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
-            document.head.appendChild(style);
-          }
-          
-          const sentences = await generateAISentences(display.word);
-          if (sentences && Array.isArray(sentences) && sentences.length > 0) {
-            display.aiSentences = sentences;
-            learnedWords[display.word.toLowerCase()] = display;
-            saveLearnedWords();
-            renderAISentencesOnly();
-          } else {
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            alert('Unable to generate sentences. Please check your internet connection and try again.');
-          }
-        };
-
-        if(generateBtn) generateBtn.addEventListener('click', () => triggerGeneration(generateBtn));
-        if(refreshBtn) refreshBtn.addEventListener('click', () => triggerGeneration(refreshBtn));
-      }
-
-      function renderFullPracticeArea(){ 
-        renderPracticeOnly(); 
-        renderQuizOnly(); 
-        renderAISentencesOnly();
-      }
-
-      /* --- DICTIONARY ENGINE --- */
+      // --- Dictionary (full word list, pagination, letter filter) ---
       async function initDictionary() {
-        if(dictionaryMasterList.length === 0) dictionaryMasterList = await fetchCombinedWordList();
+        if (dictionaryMasterList.length === 0) dictionaryMasterList = await fetchCombinedWordList();
         renderAlphabetRow();
         applyDictionaryFilterAndRender();
       }
-      
+
       function renderAlphabetRow() {
         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-        alphabetRow.innerHTML = '<button class="letter-btn" data-letter="">All</button>' + 
+        alphabetRow.innerHTML = '<button class="letter-btn" data-letter="">All</button>' +
           letters.map(l => `<button class="letter-btn ${currentLetter === l ? 'active-letter' : ''}" data-letter="${l}">${l}</button>`).join('');
-        
+
         document.querySelectorAll('.letter-btn').forEach(btn => btn.addEventListener('click', (e) => {
           currentLetter = btn.dataset.letter || null;
           dictPage = 1;
@@ -1964,34 +2708,34 @@
           renderAlphabetRow();
         }));
       }
-      
-      function getFilteredWords() { 
+
+      function getFilteredWords() {
         let list = dictionaryMasterList;
-        if(currentLetter) {
+        if (currentLetter) {
           list = list.filter(w => w.charAt(0).toUpperCase() === currentLetter);
         }
         const token = dictFilterInput.value.trim().toLowerCase();
-        if(token) {
+        if (token) {
           list = list.filter(w => w.toLowerCase().includes(token));
         }
-        return list; 
+        return list;
       }
-      
+
       function applyDictionaryFilterAndRender() {
         const filtered = getFilteredWords();
         const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-        if(dictPage > totalPages && totalPages > 0) dictPage = totalPages;
-        const start = (dictPage-1)*PAGE_SIZE;
-        const pageWords = filtered.slice(start, start+PAGE_SIZE);
-        
+        if (dictPage > totalPages && totalPages > 0) dictPage = totalPages;
+        const start = (dictPage - 1) * PAGE_SIZE;
+        const pageWords = filtered.slice(start, start + PAGE_SIZE);
+
         renderDictionaryGrid(pageWords);
         renderPaginationControls(totalPages);
       }
-      
+
       function renderDictionaryGrid(words) {
-        if(!words.length) { 
-          dictionaryGrid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">No words found</div>'; 
-          return; 
+        if (!words.length) {
+          dictionaryGrid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">No words found</div>';
+          return;
         }
         dictionaryGrid.innerHTML = words.map(w => `
           <div class="dict-word-card" data-word="${w}">
@@ -1999,62 +2743,68 @@
             <button class="mini-add-btn add-to-practice-btn" data-word="${w}" style="padding:4px 10px;">Add</button>
           </div>
         `).join('');
-        
+
         document.querySelectorAll('.dict-word-card').forEach(card => {
-          card.addEventListener('click', (e) => { 
-            if(!e.target.classList.contains('add-to-practice-btn')) {
-              showExpandForWord(card, card.dataset.word); 
+          card.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('add-to-practice-btn')) {
+              showExpandForWord(card, card.dataset.word);
             }
           });
           const addBtn = card.querySelector('.add-to-practice-btn');
-          if(addBtn) addBtn.addEventListener('click', (e) => { 
-            e.stopPropagation(); 
-            addWordToPractice(addBtn.dataset.word); 
+          if (addBtn) addBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            addWordToPractice(addBtn.dataset.word);
           });
         });
       }
-      
+
       function renderPaginationControls(totalPages) {
-        if(totalPages <= 1) { dictPagination.innerHTML = ''; return; }
-        dictPagination.innerHTML = `<button class="btn" id="dictPrevPage" ${dictPage===1?'disabled':''}>&larr; Prev</button><span class="page-info">${dictPage} / ${totalPages}</span><button class="btn" id="dictNextPage" ${dictPage===totalPages?'disabled':''}>Next &rarr;</button>`;
-        
-        document.getElementById('dictPrevPage')?.addEventListener('click',()=>{ 
-          if(dictPage>1){ dictPage--; hideExpand(); applyDictionaryFilterAndRender(); dictionaryGrid.scrollTop = 0; } 
+        if (totalPages <= 1) { dictPagination.innerHTML = ''; return; }
+        dictPagination.innerHTML =
+          `<button class="btn" id="dictPrevPage" ${dictPage===1?'disabled':''}>&larr; Prev</button><span class="page-info">${dictPage} / ${totalPages}</span><button class="btn" id="dictNextPage" ${dictPage===totalPages?'disabled':''}>Next &rarr;</button>`;
+
+        document.getElementById('dictPrevPage')?.addEventListener('click', () => {
+          if (dictPage > 1) { dictPage--; hideExpand(); applyDictionaryFilterAndRender(); dictionaryGrid.scrollTop = 0; }
         });
-        document.getElementById('dictNextPage')?.addEventListener('click',()=>{ 
-          if(dictPage<totalPages){ dictPage++; hideExpand(); applyDictionaryFilterAndRender(); dictionaryGrid.scrollTop = 0; } 
+        document.getElementById('dictNextPage')?.addEventListener('click', () => {
+          if (dictPage < totalPages) { dictPage++; hideExpand(); applyDictionaryFilterAndRender(); dictionaryGrid.scrollTop = 0; }
         });
       }
-      
+
       async function showExpandForWord(cardElement, word) {
         const lower = word.toLowerCase();
-        let defHtml = '', shortDef = '';
-        
+        let defHtml = '',
+          shortDef = '';
+
         if (customDefinitions[lower]) {
           defHtml = customDefinitions[lower].html;
           shortDef = customDefinitions[lower].shortDef;
-        } else if(definitionCache.has(word)) { 
-          defHtml = definitionCache.get(word).html; 
-          shortDef = definitionCache.get(word).short; 
-        } else { 
-          const data = await fetchFullDefinitionData(word); 
-          if(data){ 
-            defHtml = buildDefinitionHTML(data) || ''; 
-            shortDef = getFirstShortDef(data) || ''; 
-          } 
-          definitionCache.set(word, { html: defHtml, short: shortDef }); 
+        } else if (definitionCache.has(word)) {
+          defHtml = definitionCache.get(word).html;
+          shortDef = definitionCache.get(word).short;
+        } else {
+          const data = await fetchFullDefinitionData(word);
+          if (data) {
+            defHtml = buildDefinitionHTML(data) || '';
+            shortDef = getFirstShortDef(data) || '';
+          }
+          definitionCache.set(word, { html: defHtml, short: shortDef });
         }
-        
+
         let finalDef = '';
         if (defHtml || shortDef) {
           finalDef = defHtml || shortDef;
         } else {
-          finalDef = `<div class="no-def-container"><span>No definition available.</span><button class="create-own-def-btn" id="triggerModalBtn">Create your own definition</button></div>`;
+          finalDef =
+            `<div class="no-def-container"><span>No definition available.</span><button class="create-own-def-btn" id="triggerModalBtn">Create your own definition</button></div>`;
         }
 
-        const googleFallback = `<div style="margin-top: 12px;"><a class="google-link view-full-def" href="https://www.google.com/search?q=define+${encodeURIComponent(word)}" target="_blank">Search with Google<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>`;
-        const editButton = customDefinitions[lower] ? `<div style="margin-bottom: 8px;"><button class="create-own-def-btn" id="triggerEditModalBtn" style="font-size:13px;">Edit Custom Definition</button></div>` : '';
-        
+        const googleFallback =
+          `<div style="margin-top: 12px;"><a class="google-link view-full-def" href="https://www.google.com/search?q=define+${encodeURIComponent(word)}" target="_blank">Search with Google<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>`;
+        const editButton = customDefinitions[lower] ?
+          `<div style="margin-bottom: 8px;"><button class="create-own-def-btn" id="triggerEditModalBtn" style="font-size:13px;">Edit Custom Definition</button></div>` :
+          '';
+
         expandedFloatCard.innerHTML = `
           <div class="expanded-word-title">${word}</div>
           <div class="expanded-definition">${finalDef}</div>
@@ -2067,129 +2817,30 @@
             <button class="close-expanded" id="closeFloatBtn">&#x2715;</button>
           </div>
         `;
-        
-        const rect = cardElement.getBoundingClientRect();
-        let topPos = rect.top + window.scrollY - 10;
-        let leftPos = rect.left + window.scrollX + rect.width + 12;
-        
-        if (leftPos + 440 > window.innerWidth) {
-          leftPos = rect.left + window.scrollX - 440 - 12;
-        }
-        if (leftPos < 16) leftPos = 16;
-        if (topPos + 460 > window.innerHeight + window.scrollY) {
-          topPos = window.innerHeight + window.scrollY - 480;
-        }
-        if (topPos < 70) topPos = 70;
-        
-        expandedFloatCard.style.top = `${topPos}px`;
-        expandedFloatCard.style.left = `${leftPos}px`;
-        
-        expandOverlay.style.display = 'block';
-        expandedFloatCard.style.display = 'flex';
-        
-        requestAnimationFrame(() => { 
-          expandOverlay.classList.add('active'); 
-          expandedFloatCard.classList.add('visible-float'); 
-        });
-        
-        document.getElementById('floatAddWordBtn')?.addEventListener('click', () => { addWordToPractice(word); hideExpand(); });
+
+        expandOverlay.classList.add('active');
+
+        document.getElementById('floatAddWordBtn')?.addEventListener('click', () => { addWordToPractice(word);
+          hideExpand(); });
         document.getElementById('closeFloatBtn')?.addEventListener('click', hideExpand);
-        
+
         document.getElementById('triggerModalBtn')?.addEventListener('click', () => { openCustomDefModal(word); });
         document.getElementById('triggerEditModalBtn')?.addEventListener('click', () => { openCustomDefModal(word); });
       }
-      
-      function hideExpand() { 
-        expandOverlay.classList.remove('active'); 
-        expandedFloatCard.classList.remove('visible-float'); 
-        setTimeout(() => {
-          if(!expandOverlay.classList.contains('active')) {
-            expandOverlay.style.display = 'none';
-            expandedFloatCard.style.display = 'none';
-          }
-        }, 200);
+
+      function hideExpand() {
+        expandOverlay.classList.remove('active');
       }
-      expandOverlay.addEventListener('click', hideExpand);
+      expandOverlay.addEventListener('click', (e) => {
+        if (e.target === expandOverlay) hideExpand();
+      });
 
-      /* --- FREE-WRITE MARKDOWN PARSER LOGIC --- */
-      function parseFreeWriteToMW(text) {
-        const lines = text.split('\n');
-        let pos = '';
-        let pron = '';
-        let htmlSegments = [];
-        let firstShortDef = '';
-
-        let currentSenseNum = null;
-        let currentLetterCode = 97; 
-        let currentParenCounter = 1;
-
-        for (let i = 0; i < lines.length; i++) {
-          let line = lines[i].trim();
-          if (!line) continue;
-
-          if (line.startsWith('@pos ')) { pos = line.substring(5).trim(); continue; }
-          if (line.startsWith('@pron ')) { pron = line.substring(6).trim(); continue; }
-
-          const rootSenseMatch = line.match(/^(\d+)\s*(--|-)\s*(.*)$/);
-
-          if (rootSenseMatch) {
-            const num = rootSenseMatch[1];
-            const operator = rootSenseMatch[2];
-            const content = rootSenseMatch[3].trim();
-            
-            currentSenseNum = num;
-            currentLetterCode = 97; 
-            currentParenCounter = 1; 
-
-            if (operator === '-') {
-              const letter = String.fromCharCode(currentLetterCode);
-              htmlSegments.push(`<div class="sense-block"><span class="sense-num">${num} ${letter} :</span>${content}</div>`);
-              currentLetterCode++; 
-              if (!firstShortDef) firstShortDef = content;
-            } else {
-              htmlSegments.push(`<div class="sense-block"><span class="sense-num">${num} :</span>${content}</div>`);
-              if (!firstShortDef) firstShortDef = content;
-            }
-            continue;
-          }
-
-          if (line.startsWith('-- ')) {
-            const content = line.substring(3).trim();
-            htmlSegments.push(`<div class="sub-sense"><span class="sense-num">(${currentParenCounter}) :</span>${content}</div>`);
-            currentParenCounter++;
-            continue;
-          }
-
-          if (line.startsWith('- ')) {
-            const content = line.substring(2).trim();
-            const letter = String.fromCharCode(currentLetterCode);
-            htmlSegments.push(`<div class="sub-sense"><span class="sense-num">${letter} :</span>${content}</div>`);
-            currentLetterCode++;
-            currentParenCounter = 1; 
-            if (!firstShortDef) firstShortDef = content;
-            continue;
-          }
-        }
-
-        let finalHtml = '';
-        if (pos || pron) {
-          if (pos) finalHtml += `<span class="fl-label">${pos}</span>`;
-          if (pron) finalHtml += ` <span class="pron">${pron.startsWith('/') ? pron : '/' + pron + '/'}</span>`;
-        }
-        finalHtml += htmlSegments.join('');
-
-        return {
-          html: finalHtml,
-          shortDef: firstShortDef || 'Custom structured definition.',
-          raw: text
-        };
-      }
-
+      // --- Custom definition modal ---
       function openCustomDefModal(word) {
         currentEditingWord = word;
         const lower = word.toLowerCase();
         modalWordTitle.textContent = `Definition for "${word}"`;
-        
+
         if (customDefinitions[lower] && customDefinitions[lower].raw) {
           customFreeWriteInput.value = customDefinitions[lower].raw;
           deleteCustomDefBtn.style.display = 'inline-block';
@@ -2241,14 +2892,14 @@
         if (currentTab === 'dictionary') applyDictionaryFilterAndRender();
         if (currentTab === 'practice') {
           renderLearnedWordsList();
-          renderFullPracticeArea();
+          renderPracticeOnly();
         }
       });
 
       deleteCustomDefBtn.addEventListener('click', () => {
         if (!currentEditingWord) return;
         const lower = currentEditingWord.toLowerCase();
-        
+
         delete customDefinitions[lower];
         saveCustomDefinitions();
 
@@ -2260,7 +2911,7 @@
               learnedWords[lower].definitionHTML = buildDefinitionHTML(data) || '';
               learnedWords[lower].shortDef = getFirstShortDef(data) || 'Definition not available.';
               saveLearnedWords();
-              if (currentTab === 'practice') renderFullPracticeArea();
+              if (currentTab === 'practice') renderPracticeOnly();
             }
           });
           saveLearnedWords();
@@ -2271,13 +2922,83 @@
         if (currentTab === 'dictionary') applyDictionaryFilterAndRender();
         if (currentTab === 'practice') {
           renderLearnedWordsList();
-          renderFullPracticeArea();
+          renderPracticeOnly();
         }
       });
 
       cancelCustomDefBtn.addEventListener('click', closeCustomDefModal);
 
-      /* --- SUB HEADER SEARCH BAR INTERACTIONS --- */
+      function parseFreeWriteToMW(text) {
+        const lines = text.split('\n');
+        let pos = '';
+        let pron = '';
+        let htmlSegments = [];
+        let firstShortDef = '';
+
+        let currentParenCounter = 1;
+
+        for (let i = 0; i < lines.length; i++) {
+          let line = lines[i].trim();
+          if (!line) continue;
+
+          if (line.startsWith('@pos ')) { pos = line.substring(5).trim(); continue; }
+          if (line.startsWith('@pron ')) { pron = line.substring(6).trim(); continue; }
+
+          const rootSenseMatch = line.match(/^(\d+)\s*(--|-)\s*(.*)$/);
+
+          if (rootSenseMatch) {
+            const num = rootSenseMatch[1];
+            const operator = rootSenseMatch[2];
+            const content = rootSenseMatch[3].trim();
+
+            let currentLetterCode = 97;
+            currentParenCounter = 1;
+
+            if (operator === '-') {
+              const letter = String.fromCharCode(currentLetterCode);
+              htmlSegments.push(`<div class="sense-block"><span class="sense-num">${num} ${letter} :</span>${content}</div>`);
+              currentLetterCode++;
+              if (!firstShortDef) firstShortDef = content;
+            } else {
+              htmlSegments.push(`<div class="sense-block"><span class="sense-num">${num} :</span>${content}</div>`);
+              if (!firstShortDef) firstShortDef = content;
+            }
+            continue;
+          }
+
+          if (line.startsWith('-- ')) {
+            const content = line.substring(3).trim();
+            htmlSegments.push(`<div class="sub-sense"><span class="sense-num">(${currentParenCounter}) :</span>${content}</div>`);
+            currentParenCounter++;
+            continue;
+          }
+
+          if (line.startsWith('- ')) {
+            const content = line.substring(2).trim();
+            const letter = String.fromCharCode(currentLetterCode);
+            htmlSegments.push(`<div class="sub-sense"><span class="sense-num">${letter} :</span>${content}</div>`);
+            currentLetterCode++;
+            currentParenCounter = 1;
+            if (!firstShortDef) firstShortDef = content;
+            continue;
+          }
+        }
+
+        let finalHtml = '';
+        if (pos || pron) {
+          if (pos) finalHtml += `<span class="fl-label">${pos}</span>`;
+          if (pron) finalHtml += ` <span class="pron">${pron.startsWith('/') ? pron : '/' + pron + '/'}</span>`;
+        }
+        finalHtml += htmlSegments.join('');
+
+        return {
+          html: finalHtml,
+          shortDef: firstShortDef || 'Custom structured definition.',
+          raw: text
+        };
+      }
+
+      // --- Dictionary filter input ---
       dictFilterInput.addEventListener('input', () => {
         if (dictFilterInput.value.length > 0) {
           dictClearBtn.classList.add('visible');
@@ -2296,58 +3017,106 @@
         dictFilterInput.focus();
       });
 
-      function switchTab(tab){
+      // --- Tabs ---
+      function switchTab(tab) {
         currentTab = tab;
-        if(tab === 'daily'){ dailyFiveView.classList.remove('hidden'); practiceView.classList.add('hidden'); dictionaryView.classList.add('hidden'); hideExpand(); renderDailyWords(); searchDropdown.classList.remove('active'); }
-        else if(tab === 'practice'){ dailyFiveView.classList.add('hidden'); practiceView.classList.remove('hidden'); dictionaryView.classList.add('hidden'); hideExpand(); renderLearnedWordsList(); if(Object.keys(learnedWords).length>1 && !quizWord) startNewQuiz(); renderFullPracticeArea(); }
-        else if(tab === 'dictionary'){ dailyFiveView.classList.add('hidden'); practiceView.classList.add('hidden'); dictionaryView.classList.remove('hidden'); hideExpand(); initDictionary(); }
-      }
-      
-      document.getElementById('customSortTrigger').addEventListener('click',()=>{ document.getElementById('customSortDropdown').classList.toggle('active'); });
-      document.querySelectorAll('#customSortDropdown .custom-select-option').forEach(opt=>{ opt.addEventListener('click',(e)=>{ const trigger=document.getElementById('customSortTrigger'); trigger.textContent=e.target.textContent; trigger.dataset.value=e.target.dataset.value; document.getElementById('customSortDropdown').classList.remove('active'); renderLearnedWordsList(); }); });
-      
-      document.getElementById('customFilterTrigger').addEventListener('click',()=>{ document.getElementById('customFilterDropdown').classList.toggle('active'); });
+        dailyFiveView.classList.add('hidden');
+        practiceView.classList.add('hidden');
+        dictionaryView.classList.add('hidden');
 
-      document.addEventListener('click',(e)=>{ 
-        const wrap=document.getElementById('customSortWrapper'); 
-        if(wrap && !wrap.contains(e.target)) document.getElementById('customSortDropdown').classList.remove('active'); 
-        
-        const fwrap=document.getElementById('customFilterWrapper'); 
-        if(fwrap && !fwrap.contains(e.target)) document.getElementById('customFilterDropdown').classList.remove('active'); 
-      });
-      
-      searchWordInput.addEventListener('input',async()=>{ 
-        clearTimeout(searchTimeout); 
-        const q=searchWordInput.value.trim(); 
-        if(!q){ searchDropdown.classList.remove('active'); return; } 
-        searchTimeout=setTimeout(async()=>{ 
-          const sugg=await fetchWordSuggestions(q); 
-          if(sugg.length){ 
-            searchDropdown.innerHTML=sugg.map(w=>`<div class="search-result-item"><span style="flex:1;">${w}</span><button class="add-to-practice-btn" data-word="${w}"><svg class="icon" viewBox="0 0 24 24" style="width:12px;height:12px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button></div>`).join(''); 
-            searchDropdown.classList.add('active'); 
-            document.querySelectorAll('#searchDropdown .add-to-practice-btn').forEach(btn=>btn.addEventListener('click',(e)=>{ e.stopPropagation(); addWordToPractice(btn.dataset.word); })); 
-          } else searchDropdown.classList.remove('active'); 
-        },150); 
-      });
-      
-      document.addEventListener('click',(e)=>{ if(!searchWordInput.contains(e.target) && !searchDropdown.contains(e.target)) searchDropdown.classList.remove('active'); });
-      async function fetchWordSuggestions(query){ const wordList = await fetchCombinedWordList(); const q = query.toLowerCase().trim(); if(!q) return []; return wordList.filter(w => w.startsWith(q)).slice(0,8); }
-      
-      async function init(){ 
-        loadLearnedWords(); 
+        dailyTabBtn.classList.remove('btn-primary');
+        dictionaryTabBtn.classList.remove('btn-primary');
+        practiceTabBtn.classList.remove('btn-primary');
+
+        if (tab === 'daily') {
+          dailyFiveView.classList.remove('hidden');
+          dailyTabBtn.classList.add('btn-primary');
+        } else if (tab === 'practice') {
+          practiceView.classList.remove('hidden');
+          practiceTabBtn.classList.add('btn-primary');
+          renderLearnedWordsList();
+        } else if (tab === 'dictionary') {
+          dictionaryView.classList.remove('hidden');
+          dictionaryTabBtn.classList.add('btn-primary');
+          initDictionary();
+        }
+      }
+
+      dailyTabBtn.addEventListener('click', () => switchTab('daily'));
+      practiceTabBtn.addEventListener('click', () => switchTab('practice'));
+      dictionaryTabBtn.addEventListener('click', () => switchTab('dictionary'));
+
+      // --- Init ---
+      function initApp() {
+        loadLearnedWords();
+        loadVaultTree();
         loadCustomDefinitions();
         loadUserGroups();
         renderGroupFilterDropdown();
-        
-        if(loadDailyWords()) renderDailyWords(); 
-        else{ dailyWords=await fetchFiveUniqueWords(); saveDailyWords(); renderDailyWords(); } 
-        dailyTabBtn.addEventListener('click',()=>switchTab('daily')); 
-        practiceTabBtn.addEventListener('click',()=>switchTab('practice')); 
-        dictionaryTabBtn.addEventListener('click',()=>switchTab('dictionary')); 
-        document.getElementById('refreshWordsBtn').addEventListener('click',refreshDailyWords); 
-        practiceSearchInput.addEventListener('input',renderLearnedWordsList); 
+        if (!loadDailyWords()) {
+          refreshDailyWords();
+        } else {
+          renderDailyWords();
+        }
+        switchTab('daily');
+        if (Object.keys(learnedWords).length > 1) startNewQuiz();
       }
-      init();
+
+      document.getElementById('refreshWordsBtn').addEventListener('click', refreshDailyWords);
+
+      // --- Vault toolbar actions ---
+      document.getElementById('createFolderBtn').addEventListener('click', () => {
+        const newId = genId();
+        vaultTree.unshift({ id: newId, type: 'folder', name: 'Untitled folder', isOpen: true, attachedWord: null,
+          children: [], createdAt: Date.now() });
+        editingNodeId = newId;
+        saveVaultTree();
+        renderLearnedWordsList();
+      });
+
+      document.getElementById('vaultSortBtn').addEventListener('click', () => {
+        document.getElementById('vaultSortDropdown').classList.toggle('active');
+      });
+
+      document.querySelectorAll('#vaultSortDropdown .custom-select-option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          const trigger = document.getElementById('vaultSortBtn');
+          trigger.dataset.value = e.target.dataset.value;
+          document.getElementById('vaultSortDropdown').classList.remove('active');
+          renderLearnedWordsList();
+        });
+      });
+
+      function traverseAndSetState(nodes, state) {
+        for (const n of nodes) {
+          if (n.type === 'folder') {
+            n.isOpen = state;
+            traverseAndSetState(n.children, state);
+          }
+        }
+      }
+
+      document.getElementById('expandAllBtn').addEventListener('click', () => {
+        traverseAndSetState(vaultTree, true);
+        saveVaultTree();
+        renderLearnedWordsList();
+      });
+
+      document.getElementById('collapseAllBtn').addEventListener('click', () => {
+        traverseAndSetState(vaultTree, false);
+        saveVaultTree();
+        renderLearnedWordsList();
+      });
+
+      // --- Search input (global) ---
+      searchWordInput.addEventListener('input', (e) => {
+        handleSearchInputShared(e, searchDropdown, null);
+      });
+      searchWordInput.addEventListener('focus', (e) => {
+        if (e.target.value) handleSearchInputShared(e, searchDropdown, null);
+      });
+
+      initApp();
     })();
   </script>
 </body>
