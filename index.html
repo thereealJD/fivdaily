@@ -403,18 +403,8 @@
     .vault-node:hover { background: #f0ebe1; }
     .vault-node.active-word {
       background: #e9e4d9;
-      display: flex;
-      align-items: center;
-      padding: 6px 12px;
-      cursor: grab;
-      border-radius: 6px;
-      font-size: 14px;
-      color: #2d2824;
-      transition: background 0.15s;
-      position: relative;
-      user-select: none;
-      margin-bottom: 2px;
-      box-sizing: border-box;
+      border-left: 3px solid #3e5141;
+      padding-left: 9px !important;
     }
     .vault-actions {
       display: none;
@@ -556,14 +546,9 @@
       min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      overflow-y: auto;
+      overflow: hidden;
       padding-right: 12px;
-      scrollbar-width: thin;
-      scrollbar-color: #d6d0c4 transparent;
     }
-    .practice-col-left::-webkit-scrollbar { width: 5px; }
-    .practice-col-left::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 3px; }
 
     .practice-col-right {
       width: 100%;
@@ -571,67 +556,156 @@
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      overflow-y: auto;
-      padding-right: 4px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .practice-col-right::-webkit-scrollbar { display: none; }
-
-    .practice-word-header {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      gap: 0;
+      overflow: hidden;
       background: #ffffff;
-      padding: 24px;
       border-radius: 10px;
       border: 1px solid #e6e2d8;
       box-shadow: 0 4px 12px rgba(45, 40, 36, 0.03);
     }
-    .practice-word-title-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .practice-word-title {
-      font-size: 26px;
-      font-weight: 600;
-    }
-    .practice-full-def {
-      font-size: 14px;
-      line-height: 1.65;
-      color: #5c554d;
-    }
 
-    .quiz-module {
-      border: 1px solid #e6e2d8;
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 20px 24px;
+    /* Game area tabs */
+    .game-tabs {
+      display: flex;
+      border-bottom: 1px solid #e6e2d8;
+      background: #faf8f5;
+      border-radius: 10px 10px 0 0;
+      padding: 0 16px;
       flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(45, 40, 36, 0.03);
     }
-    .quiz-word-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
+    .game-tab {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #7a7268;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+      letter-spacing: -0.01em;
+      background: transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: inherit;
     }
-    .quiz-word-title {
-      font-size: 18px;
-      font-weight: 600;
+    .game-tab:hover {
+      color: #2d2824;
+      background: transparent;
+    }
+    .game-tab.active {
+      color: #3e5141;
+      border-bottom-color: #3e5141;
     }
 
-    .options-grid {
+    .game-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      scrollbar-width: thin;
+      scrollbar-color: #d6d0c4 transparent;
+      background: #ffffff;
+      border-radius: 0 0 10px 10px;
+    }
+    .game-content::-webkit-scrollbar { width: 4px; }
+    .game-content::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
+
+    .game-panel {
+      display: none;
+      animation: fadeSlide 0.25s ease;
+    }
+    .game-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Writing area inside game panel */
+    .writing-panel .type-section {
+      border: none;
+      padding: 0;
+      box-shadow: none;
+      background: transparent;
+      border-radius: 0;
+    }
+    .writing-panel .type-section .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #2d2824;
+      margin-bottom: 16px;
+    }
+    .writing-panel .sentence-input {
+      border: 1px solid #dcd7cd;
+      background: #faf8f5;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 14px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+      font-family: inherit;
+    }
+    .writing-panel .sentence-input:focus {
+      border-color: #a39c91;
+      background: #ffffff;
+    }
+    .writing-panel .sentences-dropdown {
+      border: 1px solid #e6e2d8;
+      border-radius: 8px;
+      background: #ffffff;
+      margin-top: 12px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .writing-panel .sentence-item {
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #5c554d;
+      border-bottom: 1px solid #f4f1eb;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .writing-panel .sentence-item:last-child { border-bottom: none; }
+    .writing-panel .sentence-number {
+      color: #a39c91;
+      flex-shrink: 0;
+      font-size: 12px;
+      font-family: monospace;
+      padding-top: 2px;
+    }
+    .writing-panel .feedback-text {
+      font-size: 13px;
+      margin-top: 8px;
+      min-height: 18px;
+      font-weight: 500;
+    }
+
+    /* Quiz panel inside game content */
+    .quiz-panel .quiz-module {
+      border: none;
+      padding: 0;
+      box-shadow: none;
+      background: transparent;
+      border-radius: 0;
+    }
+    .quiz-panel .quiz-word-header {
+      margin-bottom: 16px;
+    }
+    .quiz-panel .quiz-word-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .quiz-panel .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
-
-    .option-btn {
+    .quiz-panel .option-btn {
       padding: 12px 14px;
       border: 1px solid #dcd7cd;
       background: #faf8f5;
@@ -644,24 +718,23 @@
       font-family: inherit;
       color: #3b352f;
     }
-    .option-btn:hover {
+    .quiz-panel .option-btn:hover {
       border-color: #a39c91;
       background: #f4f1eb;
     }
-    .option-btn.selected-correct {
+    .quiz-panel .option-btn.selected-correct {
       border-color: #4a624d;
       background: #f0f4f1;
       color: #2f3e31;
     }
-    .option-btn.selected-wrong {
+    .quiz-panel .option-btn.selected-wrong {
       border-color: #b85c5c;
       background: #fdf3f3;
       color: #8c3b3b;
     }
-    .option-btn:disabled { cursor: default; }
-    .option-btn.dimmed { opacity: 0.4; }
-
-    .quiz-feedback-row {
+    .quiz-panel .option-btn:disabled { cursor: default; }
+    .quiz-panel .option-btn.dimmed { opacity: 0.4; }
+    .quiz-panel .quiz-feedback-row {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -669,390 +742,138 @@
       min-height: 20px;
       margin-bottom: 6px;
     }
-    .streak-row {
+    .quiz-panel .streak-row {
       font-size: 12.5px;
       color: #a39c91;
       margin-bottom: 12px;
       font-weight: 500;
     }
-    .quiz-actions {
+    .quiz-panel .quiz-actions {
       display: flex;
       gap: 8px;
     }
-
-    .quiz-full-def-link {
+    .quiz-panel .quiz-full-def-link {
       display: none;
       margin-top: 16px;
       padding-top: 12px;
       border-top: 1px dashed #dcd7cd;
       font-size: 12.5px;
     }
-    .quiz-full-def-link.visible { display: block; }
-    .quiz-full-def-link a {
-      color: #7a7268;
-      text-decoration: none;
-      display: inline-flex;
+    .quiz-panel .quiz-full-def-link.visible { display: block; }
+
+    /* Flashcards panel placeholder */
+    .flashcards-panel {
+      display: flex;
       align-items: center;
-      gap: 4px;
-      transition: color 0.15s;
-      font-weight: 500;
-    }
-    .quiz-full-def-link a:hover { color: #2d2824; }
-
-    .type-section-wrapper {
-      border-top: 1px dashed #dcd7cd;
-      padding-top: 24px;
-      display: flex;
-      flex-direction: column;
-      margin-top: auto;
-      height: 320px;
-      overflow: auto;
-    }
-    .type-section-wrapper::-webkit-scrollbar,
-    .type-section::-webkit-scrollbar { display: none; }
-    .type-section-wrapper,
-    .type-section {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      justify-content: center;
+      height: 100%;
+      color: #a39c91;
+      font-style: italic;
     }
 
-    .type-section {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
+    /* Definition area full height */
+    #practiceHeaderContainer {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: #d6d0c4 transparent;
+    }
+    #practiceHeaderContainer::-webkit-scrollbar { width: 4px; }
+    #practiceHeaderContainer::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
+    .practice-word-header {
       background: #ffffff;
       padding: 24px;
       border-radius: 10px;
       border: 1px solid #e6e2d8;
       box-shadow: 0 4px 12px rgba(45, 40, 36, 0.03);
+      height: 100%;
     }
-    .section-title {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 14px;
-      color: #2d2824;
-    }
-
-    .sentence-input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #dcd7cd;
-      font-size: 14px;
-      outline: none;
-      margin-bottom: 10px;
-      resize: none;
-      border-radius: 6px;
-      font-family: inherit;
-      box-sizing: border-box;
-      background: #faf8f5;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .sentence-input:focus {
-      border-color: #a39c91;
-      background: #ffffff;
-    }
-
-    .sentences-dropdown {
-      margin-top: 12px;
-      border: 1px solid #e6e2d8;
-      border-radius: 8px;
-      overflow-y: auto;
-      background: #ffffff;
-      scrollbar-width: thin;
-      scrollbar-color: #d6d0c4 transparent;
-      width: 100%;
-      height: fit-content;
-    }
-    .sentences-dropdown::-webkit-scrollbar { width: 4px; }
-    .sentences-dropdown::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
-    .sentence-item {
-      padding: 10px 14px;
-      font-size: 13.5px;
-      color: #5c554d;
-      border-bottom: 1px solid #f4f1eb;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.5;
-    }
-    .sentence-item:last-child { border-bottom: none; }
-    .sentence-number {
-      color: #a39c91;
-      flex-shrink: 0;
-      font-size: 12px;
-      font-family: monospace;
-      padding-top: 2px;
-    }
-
-    .hidden { display: none !important; }
-    .empty-state {
-      color: #a39c91;
-      font-size: 14px;
-      padding: 40px 0;
-      text-align: center;
-      width: 100%;
-      font-style: italic;
-    }
-    .feedback-text {
-      font-size: 13px;
-      margin-top: 8px;
-      min-height: 18px;
-      font-weight: 500;
-    }
-
-    .icon {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      stroke-width: 1.5;
-      fill: none;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      flex-shrink: 0;
-    }
-    .external-link-icon {
-      width: 14px;
-      height: 14px;
-    }
-    .bullseye-icon {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* Dictionary – full‑width sub‑header */
-    .dictionary-container {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - 52px);
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .dictionary-sub-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 28px;
-      gap: 12px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #e6e2d8;
-      flex-shrink: 0;
-    }
-
-    .alphabet-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .dict-filter-wrapper {
-      position: relative;
-      width: 260px;
-    }
-    .dict-filter-input {
-      width: 100%;
-      border: 1px solid #dcd7cd;
-      padding: 8px 32px 8px 12px;
-      font-size: 13.5px;
-      outline: none;
-      background: #ffffff;
-      border-radius: 6px;
-      font-family: inherit;
-    }
-    .dict-filter-input:focus {
-      border-color: #a39c91;
-    }
-    .dict-clear-btn {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #a39c91;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 2px;
-    }
-    .dict-clear-btn:hover { color: #2d2824; }
-    .dict-clear-btn.visible { display: flex; }
-
-    .letter-btn {
-      background: #ffffff;
-      border: 1px solid #dcd7cd;
-      border-radius: 4px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s;
-      color: #5c554d;
-      font-family: inherit;
-    }
-    .letter-btn:hover {
-      background: #faf8f5;
-      border-color: #c4bdaf;
-    }
-    .letter-btn.active-letter {
-      background: #3e5141;
-      color: #faf8f5;
-      border-color: #3e5141;
-    }
-
-    .dictionary-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px 28px 8px 28px;
-      scrollbar-width: thin;
-      scrollbar-color: #d6d0c4 transparent;
-    }
-    .dictionary-grid::-webkit-scrollbar { width: 5px; }
-    .dictionary-grid::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 3px; }
-
-    .dict-word-card {
-      border: 1px solid #e6e2d8;
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 14px 16px;
-      transition: all 0.15s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      height: 52px;
-      box-shadow: 0 2px 8px rgba(45, 40, 36, 0.02);
-    }
-    .dict-word-card:hover {
-      background: #faf8f5;
-      border-color: #c4bdaf;
-      box-shadow: 0 4px 12px rgba(45, 40, 36, 0.04);
-    }
-    .dict-word-text {
-      font-size: 14.5px;
-      font-weight: 500;
-      color: #2d2824;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-right: 12px;
-    }
-    .mini-add-btn {
-      opacity: 0;
-      transition: opacity 0.15s;
-      flex-shrink: 0;
-      background: #f4f1eb;
-      border-color: #dcd7cd;
-      color: #615a52;
-    }
-    .dict-word-card:hover .mini-add-btn { opacity: 1; }
-    .mini-add-btn:hover {
-      background: #3e5141;
-      border-color: #3e5141;
-      color: #fff;
-    }
-
-    .pagination-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 12px 28px 20px 28px;
-      border-top: 1px solid #e6e2d8;
-      flex-shrink: 0;
-    }
-    .page-info {
-      font-size: 13.5px;
-      color: #615a52;
-      font-weight: 500;
-      font-variant-numeric: tabular-nums;
-    }
-
-    #practiceHeaderContainer {
-      max-height: 500px;
-      overflow: auto;
-      scrollbar-width: thin;
-    }
-
-    .expanded-word-title {
+    .practice-word-title {
       font-size: 26px;
       font-weight: 600;
-      margin-bottom: 14px;
     }
-
-    .expanded-definition {
+    .practice-full-def {
       font-size: 14px;
       line-height: 1.65;
-      color: #43403a;
-      margin-bottom: 20px;
-      overflow-y: auto;
-      flex: 1;
-      padding-right: 6px;
-      scrollbar-width: thin;
-      scrollbar-color: #d6d0c4 transparent;
+      color: #5c554d;
+      margin-top: 12px;
     }
-    .expanded-definition::-webkit-scrollbar { width: 4px; }
-    .expanded-definition::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
 
-    .expanded-actions {
+    /* Group tags */
+    .group-tag {
+      background: #e9efe1;
+      color: #3e5141;
+      border: 1px solid #dce3ce;
+      border-radius: 4px;
+      font-size: 11.5px;
+      padding: 2px 8px;
+      font-weight: 500;
+    }
+    input[type="checkbox"].group-checkbox {
+      accent-color: #3e5141;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .flat-word-item {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid #f4f1eb;
-      padding-top: 16px;
-      margin-top: auto;
-    }
-
-    .close-expanded {
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: #a39c91;
-      padding: 4px 8px;
-      transition: color 0.15s;
-      line-height: 1;
-    }
-    .close-expanded:hover { color: #2d2824; }
-
-    .no-def-container {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .create-own-def-btn {
-      background: none;
-      border: none;
-      color: #4a624d;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      text-decoration: underline;
-      padding: 0;
-      font-family: inherit;
-    }
-    .create-own-def-btn:hover { color: #2f3e31; }
-
-    #floatAddWordBtn {
-      background-color: #3e5141;
-      color: #fff;
-      border: 1px solid #3e5141;
-      padding: 8px 16px;
+      padding: 8px 12px;
       border-radius: 6px;
-      font-weight: 500;
-      font-size: 13px;
       cursor: pointer;
       transition: background 0.15s;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+    }
+    .flat-word-item:hover { background: #f0ebe1; }
+    .flat-word-item.active-word {
+      background: #e9e4d9;
+      border-left-color: #3e5141;
+      font-weight: 500;
+    }
+    .flat-word-item .delete-word-btn {
+      opacity: 0;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      background: #b85c5c;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.15s;
+      margin-left: auto;
       font-family: inherit;
     }
-    #floatAddWordBtn:hover { background: #2f3e31; }
+    .flat-word-item:hover .delete-word-btn { opacity: 1; }
+    .flat-word-item .delete-word-btn:hover { background: #9a4949; }
 
+    .folder-search-node { position: relative; }
+
+    .vault-node.drag-over {
+      background: #e6e2d8;
+      box-shadow: inset 0 0 0 2px #3e5141;
+    }
+    .vault-node.drop-target {
+      background: #dce3ce;
+      border: 2px dashed #3e5141;
+      border-radius: 6px;
+    }
+    .vault-node.drag-over-above { border-top: 2px solid #3e5141; }
+    .vault-node.drag-over-below { border-bottom: 2px solid #3e5141; }
+    .vault-node.drag-over-inside {
+      background: #e9efe1;
+      border: 2px solid #3e5141;
+    }
+    .vault-node.dragging {
+      opacity: 0.4;
+      cursor: grabbing;
+    }
+
+    /* Modal styles (unchanged) */
     .modal-backdrop {
       position: fixed;
       top: 0;
@@ -1160,98 +981,258 @@
       gap: 12px;
     }
 
-    .group-tag {
-      background: #e9efe1;
-      color: #3e5141;
-      border: 1px solid #dce3ce;
-      border-radius: 4px;
-      font-size: 11.5px;
-      padding: 2px 8px;
-      font-weight: 500;
-    }
-    input[type="checkbox"].group-checkbox {
-      accent-color: #3e5141;
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-    }
-
-    /* Flat group list */
-    .flat-word-item {
+    /* Dictionary */
+    .dictionary-container {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      height: calc(100vh - 52px);
+      overflow: hidden;
+      padding: 0;
+    }
+    .dictionary-sub-header {
+      display: flex;
       justify-content: space-between;
-      padding: 8px 12px;
+      align-items: center;
+      padding: 12px 28px;
+      gap: 12px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e6e2d8;
+      flex-shrink: 0;
+    }
+    .alphabet-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .dict-filter-wrapper {
+      position: relative;
+      width: 260px;
+    }
+    .dict-filter-input {
+      width: 100%;
+      border: 1px solid #dcd7cd;
+      padding: 8px 32px 8px 12px;
+      font-size: 13.5px;
+      outline: none;
+      background: #ffffff;
       border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.15s;
-      font-size: 14px;
-      border-left: 3px solid transparent;
-    }
-    .flat-word-item:hover { background: #f0ebe1; }
-    .flat-word-item.active-word {
-      background: #e9e4d9;
-      border-left-color: #3e5141;
-      font-weight: 500;
-    }
-    .flat-word-item .delete-word-btn {
-      opacity: 0;
-      padding: 4px 8px;
-      font-size: 11px;
-      font-weight: 600;
-      border: none;
-      background: #b85c5c;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.15s;
-      margin-left: auto;
       font-family: inherit;
     }
-    .flat-word-item:hover .delete-word-btn { opacity: 1; }
-    .flat-word-item .delete-word-btn:hover { background: #9a4949; }
-
-    /* Folder search close on click away */
-    .folder-search-node {
-      position: relative;
+    .dict-filter-input:focus { border-color: #a39c91; }
+    .dict-clear-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #a39c91;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+    .dict-clear-btn:hover { color: #2d2824; }
+    .dict-clear-btn.visible { display: flex; }
+    .letter-btn {
+      background: #ffffff;
+      border: 1px solid #dcd7cd;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: #5c554d;
+      font-family: inherit;
+    }
+    .letter-btn:hover {
+      background: #faf8f5;
+      border-color: #c4bdaf;
+    }
+    .letter-btn.active-letter {
+      background: #3e5141;
+      color: #faf8f5;
+      border-color: #3e5141;
+    }
+    .dictionary-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 28px 8px 28px;
+      scrollbar-width: thin;
+      scrollbar-color: #d6d0c4 transparent;
+    }
+    .dictionary-grid::-webkit-scrollbar { width: 5px; }
+    .dictionary-grid::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 3px; }
+    .dict-word-card {
+      border: 1px solid #e6e2d8;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 14px 16px;
+      transition: all 0.15s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      height: 52px;
+      box-shadow: 0 2px 8px rgba(45, 40, 36, 0.02);
+    }
+    .dict-word-card:hover {
+      background: #faf8f5;
+      border-color: #c4bdaf;
+      box-shadow: 0 4px 12px rgba(45, 40, 36, 0.04);
+    }
+    .dict-word-text {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #2d2824;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 12px;
+    }
+    .mini-add-btn {
+      opacity: 0;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+      background: #f4f1eb;
+      border-color: #dcd7cd;
+      color: #615a52;
+    }
+    .dict-word-card:hover .mini-add-btn { opacity: 1; }
+    .mini-add-btn:hover {
+      background: #3e5141;
+      border-color: #3e5141;
+      color: #fff;
+    }
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px 28px 20px 28px;
+      border-top: 1px solid #e6e2d8;
+      flex-shrink: 0;
+    }
+    .page-info {
+      font-size: 13.5px;
+      color: #615a52;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
     }
 
-    /* Drag and drop indicator */
-    .vault-node.drag-over {
-      background: #e6e2d8;
-      box-shadow: inset 0 0 0 2px #3e5141;
+    /* Expand modal */
+    .expanded-word-title {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 14px;
     }
-    .vault-node.drop-target {
-      background: #dce3ce;
-      border: 2px dashed #3e5141;
+    .expanded-definition {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #43403a;
+      margin-bottom: 20px;
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: #d6d0c4 transparent;
+    }
+    .expanded-definition::-webkit-scrollbar { width: 4px; }
+    .expanded-definition::-webkit-scrollbar-thumb { background: #d6d0c4; border-radius: 2px; }
+    .expanded-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #f4f1eb;
+      padding-top: 16px;
+      margin-top: auto;
+    }
+    .close-expanded {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #a39c91;
+      padding: 4px 8px;
+      transition: color 0.15s;
+      line-height: 1;
+    }
+    .close-expanded:hover { color: #2d2824; }
+    .no-def-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .create-own-def-btn {
+      background: none;
+      border: none;
+      color: #4a624d;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      font-family: inherit;
+    }
+    .create-own-def-btn:hover { color: #2f3e31; }
+    #floatAddWordBtn {
+      background-color: #3e5141;
+      color: #fff;
+      border: 1px solid #3e5141;
+      padding: 8px 16px;
       border-radius: 6px;
+      font-weight: 500;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: inherit;
     }
-    .vault-node.drag-over-above {
-      border-top: 2px solid #3e5141;
+    #floatAddWordBtn:hover { background: #2f3e31; }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+      flex-shrink: 0;
     }
-    .vault-node.drag-over-below {
-      border-bottom: 2px solid #3e5141;
+    .external-link-icon { width: 14px; height: 14px; }
+    .bullseye-icon { width: 16px; height: 16px; }
+
+    .hidden { display: none !important; }
+    .empty-state {
+      color: #a39c91;
+      font-size: 14px;
+      padding: 40px 0;
+      text-align: center;
+      width: 100%;
+      font-style: italic;
     }
-    .vault-node.drag-over-inside {
-      background: #e9efe1;
-      border: 2px solid #3e5141;
-    }
-    .vault-node.dragging {
-      opacity: 0.4;
-      cursor: grabbing;
+    .feedback-text {
+      font-size: 13px;
+      margin-top: 8px;
+      min-height: 18px;
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
   <div class="header">
     <div class="header-left">
-      <input type="text" class="search-input" id="searchWordInput" placeholder="Search word…" autocomplete="off" />
+      <input type="text" class="search-input" id="searchWordInput" placeholder="Search…" autocomplete="off" />
       <div class="search-dropdown" id="searchDropdown"></div>
     </div>
-
-    <!-- Brand logo in center -->
     <div class="header-center">FivDaily</div>
-
     <div class="header-right">
       <button class="btn" id="dailyTabBtn">
         <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Daily Five
@@ -1277,7 +1258,6 @@
   <div class="practice-layout hidden" id="practiceView">
     <div class="sidebar">
       <input type="text" class="sidebar-search" id="practiceSearchInput" placeholder="Filter words…" />
-
       <div class="vault-toolbar">
         <button class="vault-toolbar-btn" id="createFolderBtn" title="Create New Folder">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><line x1="12" y1="10" x2="12" y2="16"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
@@ -1299,12 +1279,10 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h8"/><path d="M3 12h8"/><path d="M3 19h8"/><path d="m15 5 3 3 3-3"/><path d="m15 19 3-3 3 3"/></svg>
         </button>
       </div>
-
       <div class="custom-select-wrapper" id="customFilterWrapper" style="margin-top:-8px;">
         <div class="custom-select-trigger" id="customFilterTrigger" data-value="unassigned">Unassigned</div>
         <div class="custom-select-dropdown" id="customFilterDropdown"></div>
       </div>
-
       <div class="words-list" id="learnedWordsList"><div class="empty-state">No items yet</div></div>
     </div>
 
@@ -1312,10 +1290,24 @@
       <div class="practice-columns">
         <div class="practice-col-left">
           <div id="practiceHeaderContainer"></div>
-          <div id="typeContainer" class="type-section-wrapper"></div>
         </div>
         <div class="practice-col-right">
-          <div id="quizContainer"></div>
+          <div class="game-tabs" id="gameTabs">
+            <button class="game-tab active" data-tab="write">Write</button>
+            <button class="game-tab" data-tab="quiz">Quiz</button>
+            <button class="game-tab" data-tab="flashcards">Flashcards</button>
+          </div>
+          <div class="game-content">
+            <div class="game-panel writing-panel active" id="panelWrite">
+              <div id="typeContainer"></div>
+            </div>
+            <div class="game-panel quiz-panel" id="panelQuiz">
+              <div id="quizContainer"></div>
+            </div>
+            <div class="game-panel flashcards-panel" id="panelFlashcards">
+              <div style="text-align:center; color:#a39c91; font-style:italic; padding:40px 0;">Flashcards coming soon.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1325,7 +1317,7 @@
     <div class="dictionary-sub-header">
       <div class="alphabet-row" id="alphabetRow"></div>
       <div class="dict-filter-wrapper">
-        <input type="text" class="dict-filter-input" id="dictFilterInput" placeholder="Narrow down items…" />
+        <input type="text" class="dict-filter-input" id="dictFilterInput" placeholder="Search..." />
         <button class="dict-clear-btn" id="dictClearBtn">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
@@ -1337,9 +1329,7 @@
 
   <!-- Dictionary expansion modal -->
   <div class="modal-backdrop" id="expandOverlay">
-    <div class="modal-window" id="expandedFloatCard" style="max-height: 80vh; max-width: 600px;">
-      <!-- content populated dynamically -->
-    </div>
+    <div class="modal-window" id="expandedFloatCard" style="max-height: 80vh; max-width: 600px;"></div>
   </div>
 
   <!-- Vault Context Menu -->
@@ -1491,6 +1481,7 @@
       let customDefinitions = {};
       let currentEditingWord = null;
 
+      // DOM refs
       const dailyFiveView = document.getElementById('dailyFiveView');
       const practiceView = document.getElementById('practiceView');
       const dictionaryView = document.getElementById('dictionaryView');
@@ -1523,7 +1514,12 @@
 
       const vaultContextMenu = document.getElementById('vaultContextMenu');
 
-      // --- Drag and drop state ---
+      // Tab elements
+      const gameTabs = document.getElementById('gameTabs');
+      const panelWrite = document.getElementById('panelWrite');
+      const panelQuiz = document.getElementById('panelQuiz');
+      const panelFlashcards = document.getElementById('panelFlashcards');
+
       let dragData = null;
 
       function genId() { return 'id_' + Math.random().toString(36).substr(2, 9); }
@@ -1935,7 +1931,6 @@
             }
           }
         }
-        // For "unassigned", we show everything (no group filter)
         if (group === 'unassigned') matchGroup = true;
 
         if (node.type === 'word') return matchTerm && matchGroup;
@@ -2040,7 +2035,6 @@
       function handleDragStart(e) {
         const node = e.target.closest('.vault-node');
         if (!node) return;
-        // Ignore if inside rename input or action buttons
         if (e.target.closest('.rename-input') || e.target.closest('.vault-actions')) {
           e.preventDefault();
           return;
@@ -2051,7 +2045,6 @@
         dragData = { nodeId: id, node: n };
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/plain', id);
-        // Add dragging class
         node.classList.add('dragging');
         setTimeout(() => node.classList.remove('dragging'), 0);
       }
@@ -2062,7 +2055,6 @@
 
         const target = e.target.closest('.vault-node');
         if (!target) {
-          // If dragging over empty space, clear all indicators
           document.querySelectorAll('.vault-node').forEach(el => {
             el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
           });
@@ -2070,16 +2062,15 @@
         }
         const targetId = target.dataset.id;
         if (!dragData || targetId === dragData.nodeId) {
-          // Can't drop on itself
           document.querySelectorAll('.vault-node').forEach(el => {
             el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
           });
           return;
         }
-        // Check if target is a descendant of dragged node (if dragged is folder)
         const draggedNode = findNodeById(dragData.nodeId);
         if (draggedNode && draggedNode.type === 'folder') {
           let isDescendant = false;
+
           function checkDesc(nodes) {
             for (const n of nodes) {
               if (n.id === targetId) isDescendant = true;
@@ -2096,20 +2087,17 @@
           }
         }
 
-        // Determine drop position: above, below, or inside (if target is folder)
         const rect = target.getBoundingClientRect();
         const y = e.clientY - rect.top;
         const threshold = rect.height / 3;
-        let position = 'below'; // default
+        let position = 'below';
         if (y < threshold) position = 'above';
         else if (y > rect.height - threshold) position = 'below';
         else position = 'inside';
 
-        // Check if target is a folder and we can drop inside
         const targetNode = findNodeById(targetId);
         const canInside = targetNode && targetNode.type === 'folder';
 
-        // Clear all indicators
         document.querySelectorAll('.vault-node').forEach(el => {
           el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
         });
@@ -2121,9 +2109,7 @@
         } else {
           target.classList.add('drag-over-below');
         }
-        // Store drop position on the target
         target.dataset.dropPosition = position;
-        // Store target node id for drop
         target.dataset.dropTarget = targetId;
       }
 
@@ -2136,7 +2122,6 @@
 
       function handleDrop(e) {
         e.preventDefault();
-        // Clear all indicators
         document.querySelectorAll('.vault-node').forEach(el => {
           el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target', 'dragging');
         });
@@ -2151,14 +2136,13 @@
         const draggedId = dragData.nodeId;
         if (draggedId === targetId) return;
 
-        // Get nodes
         const draggedNode = findNodeById(draggedId);
         const targetNode = findNodeById(targetId);
         if (!draggedNode || !targetNode) return;
 
-        // Prevent moving folder into its own descendant (already checked in dragover, but double-check)
         if (draggedNode.type === 'folder') {
           let isDescendant = false;
+
           function checkDesc(nodes) {
             for (const n of nodes) {
               if (n.id === targetId) isDescendant = true;
@@ -2170,7 +2154,6 @@
           if (isDescendant) return;
         }
 
-        // Remove dragged node from its current parent
         const oldParent = findParentNode(draggedId);
         if (oldParent) {
           oldParent.children = oldParent.children.filter(n => n.id !== draggedId);
@@ -2178,23 +2161,18 @@
           vaultTree = vaultTree.filter(n => n.id !== draggedId);
         }
 
-        // Now insert at the new position
         let newParent = null;
-        let insertIndex = 0;
 
         if (position === 'inside' && targetNode.type === 'folder') {
-          // Insert as first child of target folder
           newParent = targetNode;
           if (!newParent.children) newParent.children = [];
           newParent.children.unshift(draggedNode);
           newParent.isOpen = true;
         } else {
-          // Insert above or below target within the same parent as target
           const targetParent = findParentNode(targetId);
           let siblings = targetParent ? targetParent.children : vaultTree;
           const targetIndex = siblings.findIndex(n => n.id === targetId);
           if (targetIndex === -1) {
-            // fallback: push to root
             vaultTree.push(draggedNode);
           } else {
             const insertIdx = position === 'above' ? targetIndex : targetIndex + 1;
@@ -2204,7 +2182,6 @@
 
         saveVaultTree();
         renderLearnedWordsList();
-        // If the dragged node was selected, keep selection
         if (selectedPracticeWord) {
           const stillExists = learnedWords[selectedPracticeWord.word.toLowerCase()];
           if (!stillExists) selectedPracticeWord = null;
@@ -2225,7 +2202,6 @@
         const sortBy = document.getElementById('vaultSortBtn')?.dataset.value || 'newest';
         const filterBy = document.getElementById('customFilterTrigger')?.dataset.value || 'unassigned';
 
-        // If filterBy is a specific group, render a flat list of words belonging to that group
         if (filterBy !== 'unassigned' && filterBy !== 'all') {
           const groupName = filterBy;
           let words = Object.values(learnedWords).filter(w => w.groups && w.groups.includes(groupName));
@@ -2270,7 +2246,6 @@
           return;
         }
 
-        // Otherwise, render the vault tree (for "unassigned" or "all")
         function sortNodes(nodes) {
           return nodes.slice().sort((a, b) => {
             if (a.type !== b.type) return a.type === 'folder' ? -1 : 1;
@@ -2352,7 +2327,6 @@
         if (!html) learnedWordsList.innerHTML = '<div class="empty-state">No items match</div>';
         else learnedWordsList.innerHTML = html;
 
-        // Attach drag events to all draggable nodes
         learnedWordsList.querySelectorAll('.vault-node[draggable="true"]').forEach(el => {
           el.addEventListener('dragstart', handleDragStart);
           el.addEventListener('dragover', handleDragOver);
@@ -2522,7 +2496,6 @@
               ev.stopPropagation();
               const w = item.dataset.word;
               addWordToPractice(w, folderId);
-              // Close the search input after adding
               activeFolderSearchId = null;
               renderLearnedWordsList();
             });
@@ -2541,7 +2514,6 @@
             renderLearnedWordsList();
           }
         }
-        // Also close other dropdowns
         if (vaultContextMenu && !vaultContextMenu.contains(e.target) && !e.target.closest('.folder-more-btn')) {
           vaultContextMenu.style.display = 'none';
         }
@@ -2739,7 +2711,16 @@
       function renderQuizOnly() {
         if (!quizWord || !learnedWords[quizWord]) { quizContainer.innerHTML = ''; return; }
         const qd = learnedWords[quizWord];
-        quizContainer.innerHTML = `<div class="quiz-module"><div class="quiz-word-header"><div class="quiz-word-title">${qd.word}</div></div><div class="options-grid" id="quizOptionsGrid">${quizOptions.map((opt, i) => `<button class="option-btn" data-index="${i}" ${quizAnswered?'disabled':''}>${opt}</button>`).join('')}</div><div class="quiz-feedback-row" id="quizFeedback"></div><div class="streak-row" id="streakCounter">Streak: ${quizStreak}</div><div class="quiz-actions"><button class="btn" id="skipQuizBtn">Skip</button><button class="btn" id="proceedQuizBtn" disabled>Proceed</button></div><div class="quiz-full-def-link" id="quizFullDefLink"><a href="${MW_WEB_URL}${encodeURIComponent(qd.word)}" target="_blank" rel="noopener">View on Merriam-Webster<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></div>`;
+        quizContainer.innerHTML = `
+          <div class="quiz-module">
+            <div class="quiz-word-header"><div class="quiz-word-title">${qd.word}</div></div>
+            <div class="options-grid" id="quizOptionsGrid">${quizOptions.map((opt, i) => `<button class="option-btn" data-index="${i}" ${quizAnswered?'disabled':''}>${opt}</button>`).join('')}</div>
+            <div class="quiz-feedback-row" id="quizFeedback"></div>
+            <div class="streak-row" id="streakCounter">Streak: ${quizStreak}</div>
+            <div class="quiz-actions"><button class="btn" id="skipQuizBtn">Skip</button><button class="btn" id="proceedQuizBtn" disabled>Proceed</button></div>
+            <div class="quiz-full-def-link" id="quizFullDefLink"><a href="${MW_WEB_URL}${encodeURIComponent(qd.word)}" target="_blank" rel="noopener">View on Merriam-Webster<svg class="icon external-link-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+          </div>
+        `;
         if (quizAnswered) document.querySelectorAll('#quizOptionsGrid .option-btn').forEach((btn, i) => {
           btn.disabled = true;
           if (i === quizCorrectIndex) btn.classList.add('selected-correct');
@@ -2789,26 +2770,82 @@
         if (fullDefLink) fullDefLink.classList.add('visible');
       }
 
-      // --- Practice writing ---
+      // --- Practice writing (now rendered inside panelWrite) ---
       function renderTypeSection(wd) {
-        return `<div class="type-section"><div class="section-title">Writing practice (${wd.sentences?.length || 0}/40)</div><textarea class="sentence-input" id="sentenceInput" rows="2" placeholder="Write a sentence using '${wd.word}'"></textarea><button class="btn btn-primary" id="submitSentenceBtn">Submit sentence</button><div class="feedback-text" id="sentenceFeedback"></div><div class="sentences-dropdown" id="sentencesDropdown">${(wd.sentences || []).length === 0 ? '<div class="sentence-item" style="color:#a39c91;">No sentences yet.</div>' : (wd.sentences || []).map((s, i) => `<div class="sentence-item"><span class="sentence-number">${i+1}.</span><span>${s}</span></div>`).join('')}</div></div>`;
+        return `<div class="type-section">
+          <div class="section-title">Writing practice (${wd.sentences?.length || 0}/40)</div>
+          <textarea class="sentence-input" id="sentenceInput" rows="2" placeholder="Write a sentence using '${wd.word}'"></textarea>
+          <button class="btn btn-primary" id="submitSentenceBtn">Submit sentence</button>
+          <div class="feedback-text" id="sentenceFeedback"></div>
+          <div class="sentences-dropdown" id="sentencesDropdown">${(wd.sentences || []).length === 0 ? '<div class="sentence-item" style="color:#a39c91;">No sentences yet.</div>' : (wd.sentences || []).map((s, i) => `<div class="sentence-item"><span class="sentence-number">${i+1}.</span><span>${s}</span></div>`).join('')}</div>
+        </div>`;
       }
 
       function renderPracticeOnly() {
-        if (!selectedPracticeWord) { practiceHeaderContainer.innerHTML = ''; typeContainer.innerHTML = ''; return; }
+        if (!selectedPracticeWord) {
+          practiceHeaderContainer.innerHTML = '';
+          typeContainer.innerHTML = '';
+          return;
+        }
         const wd = selectedPracticeWord;
-        practiceHeaderContainer.innerHTML = `<div class="practice-word-header"><div class="practice-word-title-row"><div class="practice-word-title">${wd.word}</div></div><div class="practice-full-def">${wd.definitionHTML || wd.shortDef || 'Definition not available.'}</div></div>`;
+        // Left panel: definition
+        practiceHeaderContainer.innerHTML = `<div class="practice-word-header">
+          <div class="practice-word-title-row"><div class="practice-word-title">${wd.word}</div></div>
+          <div class="practice-full-def">${wd.definitionHTML || wd.shortDef || 'Definition not available.'}</div>
+        </div>`;
+        // Right panel: writing tab content
         typeContainer.innerHTML = renderTypeSection(wd);
-        document.getElementById('submitSentenceBtn').addEventListener('click', () => {
-          const val = document.getElementById('sentenceInput').value.trim();
-          if (val) {
-            if (!wd.sentences) wd.sentences = [];
-            wd.sentences.push(val);
-            saveLearnedWords();
-            renderPracticeOnly();
-          }
-        });
+        // Attach events
+        const submitBtn = document.getElementById('submitSentenceBtn');
+        const input = document.getElementById('sentenceInput');
+        if (submitBtn) {
+          submitBtn.addEventListener('click', () => {
+            const val = input.value.trim();
+            if (val) {
+              if (!wd.sentences) wd.sentences = [];
+              wd.sentences.push(val);
+              saveLearnedWords();
+              renderPracticeOnly();
+              // Switch to write tab if not active
+              switchGameTab('write');
+            }
+          });
+        }
+        if (input) {
+          input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              submitBtn?.click();
+            }
+          });
+        }
       }
+
+      // --- Game tabs ---
+      function switchGameTab(tab) {
+        document.querySelectorAll('.game-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+
+        const tabMap = {
+          'write': { tab: document.querySelector('.game-tab[data-tab="write"]'), panel: panelWrite },
+          'quiz': { tab: document.querySelector('.game-tab[data-tab="quiz"]'), panel: panelQuiz },
+          'flashcards': { tab: document.querySelector('.game-tab[data-tab="flashcards"]'), panel: panelFlashcards }
+        };
+        const entry = tabMap[tab];
+        if (entry) {
+          entry.tab.classList.add('active');
+          entry.panel.classList.add('active');
+        }
+        // If switching to quiz, refresh quiz content
+        if (tab === 'quiz' && quizWord) renderQuizOnly();
+      }
+
+      gameTabs.addEventListener('click', (e) => {
+        const tabBtn = e.target.closest('.game-tab');
+        if (!tabBtn) return;
+        const tab = tabBtn.dataset.tab;
+        switchGameTab(tab);
+      });
 
       // --- Groups ---
       function renderGroupFilterDropdown() {
@@ -3263,6 +3300,8 @@
           practiceView.classList.remove('hidden');
           practiceTabBtn.classList.add('btn-primary');
           renderLearnedWordsList();
+          // Default to Write tab
+          switchGameTab('write');
         } else if (tab === 'dictionary') {
           dictionaryView.classList.remove('hidden');
           dictionaryTabBtn.classList.add('btn-primary');
