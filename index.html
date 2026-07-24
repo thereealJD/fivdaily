@@ -390,7 +390,7 @@
       display: flex;
       align-items: center;
       padding: 6px 12px;
-      cursor: pointer;
+      cursor: grab;
       border-radius: 6px;
       font-size: 14px;
       color: #2d2824;
@@ -399,12 +399,22 @@
       user-select: none;
       margin-bottom: 2px;
     }
+    .vault-node:active { cursor: grabbing; }
     .vault-node:hover { background: #f0ebe1; }
     .vault-node.active-word {
       background: #e9e4d9;
-      font-weight: 500;
-      border-left: 3px solid #3e5141;
-      padding-left: 9px !important;
+      display: flex;
+      align-items: center;
+      padding: 6px 12px;
+      cursor: grab;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #2d2824;
+      transition: background 0.15s;
+      position: relative;
+      user-select: none;
+      margin-bottom: 2px;
+      box-sizing: border-box;
     }
     .vault-actions {
       display: none;
@@ -1205,6 +1215,31 @@
     .folder-search-node {
       position: relative;
     }
+
+    /* Drag and drop indicator */
+    .vault-node.drag-over {
+      background: #e6e2d8;
+      box-shadow: inset 0 0 0 2px #3e5141;
+    }
+    .vault-node.drop-target {
+      background: #dce3ce;
+      border: 2px dashed #3e5141;
+      border-radius: 6px;
+    }
+    .vault-node.drag-over-above {
+      border-top: 2px solid #3e5141;
+    }
+    .vault-node.drag-over-below {
+      border-bottom: 2px solid #3e5141;
+    }
+    .vault-node.drag-over-inside {
+      background: #e9efe1;
+      border: 2px solid #3e5141;
+    }
+    .vault-node.dragging {
+      opacity: 0.4;
+      cursor: grabbing;
+    }
   </style>
 </head>
 <body>
@@ -1281,7 +1316,6 @@
         </div>
         <div class="practice-col-right">
           <div id="quizContainer"></div>
-          <!-- AI module removed -->
         </div>
       </div>
     </div>
@@ -1488,6 +1522,9 @@
       const saveCustomDefBtn = document.getElementById('saveCustomDefBtn');
 
       const vaultContextMenu = document.getElementById('vaultContextMenu');
+
+      // --- Drag and drop state ---
+      let dragData = null;
 
       function genId() { return 'id_' + Math.random().toString(36).substr(2, 9); }
 
@@ -1999,6 +2036,190 @@
         }, 100);
       }
 
+      // --- Drag and drop functions ---
+      function handleDragStart(e) {
+        const node = e.target.closest('.vault-node');
+        if (!node) return;
+        // Ignore if inside rename input or action buttons
+        if (e.target.closest('.rename-input') || e.target.closest('.vault-actions')) {
+          e.preventDefault();
+          return;
+        }
+        const id = node.dataset.id;
+        const n = findNodeById(id);
+        if (!n) return;
+        dragData = { nodeId: id, node: n };
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', id);
+        // Add dragging class
+        node.classList.add('dragging');
+        setTimeout(() => node.classList.remove('dragging'), 0);
+      }
+
+      function handleDragOver(e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+
+        const target = e.target.closest('.vault-node');
+        if (!target) {
+          // If dragging over empty space, clear all indicators
+          document.querySelectorAll('.vault-node').forEach(el => {
+            el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
+          });
+          return;
+        }
+        const targetId = target.dataset.id;
+        if (!dragData || targetId === dragData.nodeId) {
+          // Can't drop on itself
+          document.querySelectorAll('.vault-node').forEach(el => {
+            el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
+          });
+          return;
+        }
+        // Check if target is a descendant of dragged node (if dragged is folder)
+        const draggedNode = findNodeById(dragData.nodeId);
+        if (draggedNode && draggedNode.type === 'folder') {
+          let isDescendant = false;
+          function checkDesc(nodes) {
+            for (const n of nodes) {
+              if (n.id === targetId) isDescendant = true;
+              if (n.type === 'folder') checkDesc(n.children);
+              if (isDescendant) return;
+            }
+          }
+          checkDesc(draggedNode.children);
+          if (isDescendant) {
+            document.querySelectorAll('.vault-node').forEach(el => {
+              el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
+            });
+            return;
+          }
+        }
+
+        // Determine drop position: above, below, or inside (if target is folder)
+        const rect = target.getBoundingClientRect();
+        const y = e.clientY - rect.top;
+        const threshold = rect.height / 3;
+        let position = 'below'; // default
+        if (y < threshold) position = 'above';
+        else if (y > rect.height - threshold) position = 'below';
+        else position = 'inside';
+
+        // Check if target is a folder and we can drop inside
+        const targetNode = findNodeById(targetId);
+        const canInside = targetNode && targetNode.type === 'folder';
+
+        // Clear all indicators
+        document.querySelectorAll('.vault-node').forEach(el => {
+          el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
+        });
+
+        if (position === 'inside' && canInside) {
+          target.classList.add('drag-over-inside', 'drop-target');
+        } else if (position === 'above') {
+          target.classList.add('drag-over-above');
+        } else {
+          target.classList.add('drag-over-below');
+        }
+        // Store drop position on the target
+        target.dataset.dropPosition = position;
+        // Store target node id for drop
+        target.dataset.dropTarget = targetId;
+      }
+
+      function handleDragLeave(e) {
+        const target = e.target.closest('.vault-node');
+        if (target) {
+          target.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target');
+        }
+      }
+
+      function handleDrop(e) {
+        e.preventDefault();
+        // Clear all indicators
+        document.querySelectorAll('.vault-node').forEach(el => {
+          el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target', 'dragging');
+        });
+
+        const target = e.target.closest('.vault-node');
+        if (!target || !dragData) return;
+
+        const targetId = target.dataset.dropTarget || target.dataset.id;
+        if (!targetId) return;
+        const position = target.dataset.dropPosition || 'below';
+
+        const draggedId = dragData.nodeId;
+        if (draggedId === targetId) return;
+
+        // Get nodes
+        const draggedNode = findNodeById(draggedId);
+        const targetNode = findNodeById(targetId);
+        if (!draggedNode || !targetNode) return;
+
+        // Prevent moving folder into its own descendant (already checked in dragover, but double-check)
+        if (draggedNode.type === 'folder') {
+          let isDescendant = false;
+          function checkDesc(nodes) {
+            for (const n of nodes) {
+              if (n.id === targetId) isDescendant = true;
+              if (n.type === 'folder') checkDesc(n.children);
+              if (isDescendant) return;
+            }
+          }
+          checkDesc(draggedNode.children);
+          if (isDescendant) return;
+        }
+
+        // Remove dragged node from its current parent
+        const oldParent = findParentNode(draggedId);
+        if (oldParent) {
+          oldParent.children = oldParent.children.filter(n => n.id !== draggedId);
+        } else {
+          vaultTree = vaultTree.filter(n => n.id !== draggedId);
+        }
+
+        // Now insert at the new position
+        let newParent = null;
+        let insertIndex = 0;
+
+        if (position === 'inside' && targetNode.type === 'folder') {
+          // Insert as first child of target folder
+          newParent = targetNode;
+          if (!newParent.children) newParent.children = [];
+          newParent.children.unshift(draggedNode);
+          newParent.isOpen = true;
+        } else {
+          // Insert above or below target within the same parent as target
+          const targetParent = findParentNode(targetId);
+          let siblings = targetParent ? targetParent.children : vaultTree;
+          const targetIndex = siblings.findIndex(n => n.id === targetId);
+          if (targetIndex === -1) {
+            // fallback: push to root
+            vaultTree.push(draggedNode);
+          } else {
+            const insertIdx = position === 'above' ? targetIndex : targetIndex + 1;
+            siblings.splice(insertIdx, 0, draggedNode);
+          }
+        }
+
+        saveVaultTree();
+        renderLearnedWordsList();
+        // If the dragged node was selected, keep selection
+        if (selectedPracticeWord) {
+          const stillExists = learnedWords[selectedPracticeWord.word.toLowerCase()];
+          if (!stillExists) selectedPracticeWord = null;
+        }
+        dragData = null;
+      }
+
+      function handleDragEnd(e) {
+        document.querySelectorAll('.vault-node').forEach(el => {
+          el.classList.remove('drag-over', 'drag-over-above', 'drag-over-below', 'drag-over-inside', 'drop-target', 'dragging');
+        });
+        dragData = null;
+      }
+
+      // --- Rendering vault list ---
       function renderLearnedWordsList() {
         const term = practiceSearchInput.value.toLowerCase();
         const sortBy = document.getElementById('vaultSortBtn')?.dataset.value || 'newest';
@@ -2008,11 +2229,9 @@
         if (filterBy !== 'unassigned' && filterBy !== 'all') {
           const groupName = filterBy;
           let words = Object.values(learnedWords).filter(w => w.groups && w.groups.includes(groupName));
-          // Apply search term
           if (term) {
             words = words.filter(w => w.word.toLowerCase().includes(term));
           }
-          // Sort
           if (sortBy === 'newest') words.sort((a, b) => b.learnedAt - a.learnedAt);
           else if (sortBy === 'oldest') words.sort((a, b) => a.learnedAt - b.learnedAt);
           else words.sort((a, b) => a.word.localeCompare(b.word));
@@ -2073,12 +2292,12 @@
             const indent = depth * 16 + 8;
             if (node.type === 'folder') {
               if (node.id === editingNodeId) {
-                res += `<div class="vault-node" style="padding-left:${indent}px; cursor:default;">
+                res += `<div class="vault-node" style="padding-left:${indent}px; cursor:default;" draggable="false">
                   <input type="text" class="rename-input" data-id="${node.id}" value="${node.name}" />
                 </div>`;
               } else {
                 const isAttachedActive = selectedPracticeWord && node.attachedWord && selectedPracticeWord.word.toLowerCase() === node.attachedWord.toLowerCase();
-                res += `<div class="vault-node vault-folder ${isAttachedActive ? 'active-word' : ''}" data-id="${node.id}" style="padding-left:${indent}px">
+                res += `<div class="vault-node vault-folder ${isAttachedActive ? 'active-word' : ''}" data-id="${node.id}" style="padding-left:${indent}px" draggable="true">
                   <span class="vault-toggle ${node.isOpen ? 'open' : ''}">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                   </span>
@@ -2099,7 +2318,7 @@
               }
 
               if (node.id === activeFolderSearchId) {
-                res += `<div class="vault-node folder-search-node" style="padding-left:${indent + 16}px; cursor:default; background:transparent;">
+                res += `<div class="vault-node folder-search-node" style="padding-left:${indent + 16}px; cursor:default; background:transparent;" draggable="false">
                   <div style="position:relative; width:100%;">
                     <input type="text" class="search-input folder-search-input" data-folder-id="${node.id}" placeholder="Search word to add…" />
                     <div class="search-dropdown folder-search-dropdown" style="display:none; position:absolute; top:100%; left:0; width:100%; z-index:120; max-height:200px; overflow-y:auto;"></div>
@@ -2112,7 +2331,7 @@
               }
             } else {
               const isActive = selectedPracticeWord && selectedPracticeWord.word.toLowerCase() === node.word.toLowerCase();
-              res += `<div class="vault-node vault-word ${isActive ? 'active-word' : ''}" data-id="${node.id}" style="padding-left:${indent + 22}px">
+              res += `<div class="vault-node vault-word ${isActive ? 'active-word' : ''}" data-id="${node.id}" style="padding-left:${indent + 22}px" draggable="true">
                 <span class="vault-label">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
                   ${node.word}
@@ -2132,6 +2351,15 @@
         const html = buildTreeHtml(vaultTree, 0);
         if (!html) learnedWordsList.innerHTML = '<div class="empty-state">No items match</div>';
         else learnedWordsList.innerHTML = html;
+
+        // Attach drag events to all draggable nodes
+        learnedWordsList.querySelectorAll('.vault-node[draggable="true"]').forEach(el => {
+          el.addEventListener('dragstart', handleDragStart);
+          el.addEventListener('dragover', handleDragOver);
+          el.addEventListener('dragleave', handleDragLeave);
+          el.addEventListener('drop', handleDrop);
+          el.addEventListener('dragend', handleDragEnd);
+        });
 
         const renameInp = learnedWordsList.querySelector('.rename-input');
         if (renameInp) {
