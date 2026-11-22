@@ -1,6 +1,3 @@
-EAP ACADEMIC WORD LIST (AWL) - SUBLIST 1
-Format: headword{related word forms separated by comma}
-
 analyze{analyse, analyzed, analysed, analyzer, analysers, analyses, analyzing, analysing, analyst, analysts, analytic, analytical, analytically}
 approach{approaches, approached, approaching, approachable, unapproachable}
 area{areas}
