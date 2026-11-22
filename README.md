@@ -1,3 +1,0 @@
-# fivdaily
-
-vibe-coded
